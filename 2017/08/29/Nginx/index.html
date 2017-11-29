@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next mist use-motion" lang="zh-Hans">
+<html class="theme-next pisces use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -91,7 +91,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="Nginx">
 <meta property="og:url" content="http://yoursite.com/2017/08/29/Nginx/index.html">
-<meta property="og:site_name" content="PineApple">
+<meta property="og:site_name" content="PineApple の 学习笔记">
 <meta property="og:description" content="背景项目部署在不同服务器上，且只有内网访问。需要Nginx反向代理，配置多个location映射。之前的工程都用了tomcat，有工程名，直接照着部署就可以，这次的新闻板块直接用了nginx部署，无工程名。">
 <meta property="og:updated_time" content="2017-09-06T14:24:42.642Z">
 <meta name="twitter:card" content="summary">
@@ -104,8 +104,8 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Mist',
-    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
     fancybox: true,
     motion: true,
     duoshuo: {
@@ -130,7 +130,7 @@
 
 
 
-  <title> Nginx | PineApple </title>
+  <title> Nginx | PineApple の 学习笔记 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -140,6 +140,16 @@
 
 
 
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?0247b1d3b4cebef303651f40cd6eecdb";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
 
 
 
@@ -166,7 +176,7 @@
     <div class="custom-logo-site-title">
       <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">PineApple</span>
+        <span class="site-title">PineApple の 学习笔记</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -207,16 +217,6 @@
               <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
             分类
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            归档
           </a>
         </li>
       
@@ -264,11 +264,11 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Jenny Chen">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/11.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="PineApple">
+      <meta itemprop="name" content="PineApple の 学习笔记">
     </span>
 
     
@@ -409,8 +409,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/06/15/hello-world/" rel="next" title="Hello World">
-                <i class="fa fa-chevron-left"></i> Hello World
+              <a href="/2017/04/18/python/pythonLearning/" rel="next" title="python3学习笔记">
+                <i class="fa fa-chevron-left"></i> python3学习笔记
               </a>
             
           </div>
@@ -481,7 +481,7 @@
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
-               src="/images/avatar.gif"
+               src="/images/11.png"
                alt="Jenny Chen" />
           <p class="site-author-name" itemprop="name">Jenny Chen</p>
            
@@ -492,8 +492,8 @@
 
           
             <div class="site-state-item site-state-posts">
-              <a href="/archives">
-                <span class="site-state-item-count">5</span>
+              <a href="/">
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -504,7 +504,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -515,7 +515,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -543,6 +543,10 @@
               
                 <li class="links-of-blogroll-item">
                   <a href="http://codepub.cn" title="IT草根" target="_blank">IT草根</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://linghucong.js.org/" title="令狐葱@前端笔记" target="_blank">令狐葱@前端笔记</a>
                 </li>
               
             </ul>
@@ -586,7 +590,7 @@
       <div class="footer-inner">
         <div class="copyright" >
   
-  &copy; 
+  &copy;  2015 - 
   <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
@@ -602,10 +606,12 @@
 <div class="theme-info">
   主题 -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Mist
+    NexT.Pisces
   </a>
 </div>
 
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div>本站总访问量 <span id="busuanzi_value_site_pv"></span> 次, 访客数 <span id="busuanzi_value_site_uv"></span> 人次</div>
 
         
 
@@ -680,6 +686,13 @@
 
   
   
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
 
   
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>

@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next mist use-motion" lang="zh-Hans">
+<html class="theme-next pisces use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -87,31 +87,28 @@
 
 
 
-<meta name="description" content="[toc]
-函数调用方法调用模式this绑定自己所属对象
+<meta name="description" content="函数调用方法调用模式this绑定自己所属对象
 函数调用模式1var sum = add(3, 4)
 以此模式调用函数时，this被绑定到全局对象
 构造器调用模式如果在一个函数前面带上new来调用，那么背地里将会创建一个连接到该函数的prototype成员的新对象，同时this会被绑定到那个新对象上。
-Apply调用模式作用域JavaScript 有函数作用域，定义在函数中的参数与变量在">
+Apply调用模式作用域JavaScript 有函数作用域，定义在函数中的参数与变量在函数外部不">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JavaScript">
+<meta property="og:title" content="JavaScript语言精粹の笔记">
 <meta property="og:url" content="http://yoursite.com/2017/09/11/frontend/JavaScript/index.html">
-<meta property="og:site_name" content="PineApple">
-<meta property="og:description" content="[toc]
-函数调用方法调用模式this绑定自己所属对象
+<meta property="og:site_name" content="PineApple の 学习笔记">
+<meta property="og:description" content="函数调用方法调用模式this绑定自己所属对象
 函数调用模式1var sum = add(3, 4)
 以此模式调用函数时，this被绑定到全局对象
 构造器调用模式如果在一个函数前面带上new来调用，那么背地里将会创建一个连接到该函数的prototype成员的新对象，同时this会被绑定到那个新对象上。
-Apply调用模式作用域JavaScript 有函数作用域，定义在函数中的参数与变量在">
-<meta property="og:updated_time" content="2017-10-09T08:49:48.426Z">
+Apply调用模式作用域JavaScript 有函数作用域，定义在函数中的参数与变量在函数外部不">
+<meta property="og:updated_time" content="2017-11-29T07:07:01.243Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JavaScript">
-<meta name="twitter:description" content="[toc]
-函数调用方法调用模式this绑定自己所属对象
+<meta name="twitter:title" content="JavaScript语言精粹の笔记">
+<meta name="twitter:description" content="函数调用方法调用模式this绑定自己所属对象
 函数调用模式1var sum = add(3, 4)
 以此模式调用函数时，this被绑定到全局对象
 构造器调用模式如果在一个函数前面带上new来调用，那么背地里将会创建一个连接到该函数的prototype成员的新对象，同时this会被绑定到那个新对象上。
-Apply调用模式作用域JavaScript 有函数作用域，定义在函数中的参数与变量在">
+Apply调用模式作用域JavaScript 有函数作用域，定义在函数中的参数与变量在函数外部不">
 
 
 
@@ -119,8 +116,8 @@ Apply调用模式作用域JavaScript 有函数作用域，定义在函数中的�
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Mist',
-    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
     fancybox: true,
     motion: true,
     duoshuo: {
@@ -145,7 +142,7 @@ Apply调用模式作用域JavaScript 有函数作用域，定义在函数中的�
 
 
 
-  <title> JavaScript | PineApple </title>
+  <title> JavaScript语言精粹の笔记 | PineApple の 学习笔记 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -155,6 +152,16 @@ Apply调用模式作用域JavaScript 有函数作用域，定义在函数中的�
 
 
 
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?0247b1d3b4cebef303651f40cd6eecdb";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
 
 
 
@@ -181,7 +188,7 @@ Apply调用模式作用域JavaScript 有函数作用域，定义在函数中的�
     <div class="custom-logo-site-title">
       <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">PineApple</span>
+        <span class="site-title">PineApple の 学习笔记</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -222,16 +229,6 @@ Apply调用模式作用域JavaScript 有函数作用域，定义在函数中的�
               <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
             分类
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            归档
           </a>
         </li>
       
@@ -279,11 +276,11 @@ Apply调用模式作用域JavaScript 有函数作用域，定义在函数中的�
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Jenny Chen">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/11.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="PineApple">
+      <meta itemprop="name" content="PineApple の 学习笔记">
     </span>
 
     
@@ -295,7 +292,7 @@ Apply调用模式作用域JavaScript 有函数作用域，定义在函数中的�
             
             
               
-                JavaScript
+                JavaScript语言精粹の笔记
               
             
           </h1>
@@ -368,7 +365,7 @@ Apply调用模式作用域JavaScript 有函数作用域，定义在函数中的�
       
 
       
-        <p>[toc]</p>
+        <a id="more"></a>
 <h1 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h1><h2 id="调用"><a href="#调用" class="headerlink" title="调用"></a>调用</h2><h3 id="方法调用模式"><a href="#方法调用模式" class="headerlink" title="方法调用模式"></a>方法调用模式</h3><p>this绑定自己所属对象</p>
 <h3 id="函数调用模式"><a href="#函数调用模式" class="headerlink" title="函数调用模式"></a>函数调用模式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var sum = add(3, 4)</div></pre></td></tr></table></figure>
 <p>以此模式调用函数时，this被绑定到全局对象</p>
@@ -377,18 +374,160 @@ Apply调用模式作用域JavaScript 有函数作用域，定义在函数中的�
 <h2 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h2><p>函数可以访问它被创建时所处的上下文环境</p>
 <h2 id="模块"><a href="#模块" class="headerlink" title="模块"></a>模块</h2><p>模块模式的一般形式是：一个定义了私有变量和函数的函数；利用闭包创建可以访问私有变量和函数的特权函数（拥有使用或修改私有状态的能力）；最后返回了这个特权函数，或者把它们保存到一个用来产生序列号的对象。</p>
 <h2 id="级联"><a href="#级联" class="headerlink" title="级联"></a>级联</h2><p>方法返回this，可以启用级联<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">getElement(&apos;myBoxDiv&apos;)</div><div class="line">    .move(350,150)</div><div class="line">    .width(100)</div><div class="line">    .color(&apos;red&apos;)</div></pre></td></tr></table></figure></p>
-<h1 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h1><h2 id="伪类"><a href="#伪类" class="headerlink" title="伪类"></a>伪类</h2><p>定义构造器并扩充它的原型<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">var Mammal = function(name) &#123;</div><div class="line">   this.name = name; </div><div class="line">&#125;</div><div class="line">Mammal.prototype.get_name = function()&#123;</div><div class="line">    return this.name;</div><div class="line">&#125;</div><div class="line">Mammal.prototype.says = function()&#123;</div><div class="line">    return this.saying || &apos;&apos;;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h1 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h1><h2 id="基于类继承-——-伪类"><a href="#基于类继承-——-伪类" class="headerlink" title="基于类继承 —— 伪类"></a>基于类继承 —— 伪类</h2><p>定义构造器并扩充它的原型<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">var Mammal = function(name) &#123;</div><div class="line">   this.name = name; </div><div class="line">&#125;</div><div class="line">Mammal.prototype.get_name = function()&#123;</div><div class="line">    return this.name;</div><div class="line">&#125;</div><div class="line">Mammal.prototype.says = function()&#123;</div><div class="line">    return this.saying || &apos;&apos;;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>构造实例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var myMammal = new Mammal(&apos;herb the Mammal&apos;);</div><div class="line">var name = myMammal.get_name();//&apos;herb the Mammal&apos;</div></pre></td></tr></table></figure></p>
-<p>继承<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">var Cat = function(name)&#123;</div><div class="line">    this.name = name;</div><div class="line">    this.saying = &apos;meow&apos;;</div><div class="line">&#125;</div><div class="line">//替换 Cat.prototype 为一个新的 Mammal 实例</div><div class="line">Cat.prototype = new Mammal();</div><div class="line">//扩充新原型对象，增加 get_name 方法</div><div class="line">Cat.prototype.get_name = function()&#123;</div><div class="line">    ...</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>继承<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">var Cat = function(name)&#123;</div><div class="line">    this.name = name;</div><div class="line">    this.saying = &apos;meow&apos;;</div><div class="line">&#125;</div><div class="line"></div><div class="line">//替换 Cat.prototype 为一个新的 Mammal 实例</div><div class="line">Cat.prototype = new Mammal();</div><div class="line"></div><div class="line">//扩充新原型对象，增加 get_name 方法</div><div class="line">Cat.prototype.get_name = function()&#123;</div><div class="line">    ...</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p><strong> 注意 </strong>  </p>
 <ol>
 <li>调用构造器函数时忘记 new 前缀，this 会被绑定到全局对象  </li>
 <li>构造器函数约定名称成首字母大写的形式</li>
 </ol>
-<h2 id="原型"><a href="#原型" class="headerlink" title="原型"></a>原型</h2><p>摒弃类，专注于对象。<br>基于原型的继承相比于基于类的继承在概念上更简单：一个新对象可以继承一个旧对象的属性</p>
+<h2 id="基于原型继承"><a href="#基于原型继承" class="headerlink" title="基于原型继承"></a>基于原型继承</h2><p>摒弃类，专注于对象。<br>基于原型的继承相比于基于类的继承在概念上更简单：一个新对象可以继承一个旧对象的属性  </p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">var myMammal = &#123;</div><div class="line">    name: &apos;dd&apos;;</div><div class="line">    get_name: function()&#123;</div><div class="line">        ...</div><div class="line">    &#125;</div><div class="line">    says: function()&#123;</div><div class="line">        ...</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>利用 Object.create 方法创建新对象（第三章 原型）<br>原型连接在更新时不起作用（即不会改变原对象的属性值）<br>原型连接只有在检索值的时候才被用到<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Object.create = function(o)&#123;</div><div class="line">    var F = function()&#123;&#125;</div><div class="line">    F.prototype = o;</div><div class="line">    return new F();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>利用 Object.create 方法创建新对象（第三章 原型），构造一个已经存在对象的新实例<br>原型连接在更新时不起作用（即不会改变原对象的属性值）<br>原型连接只有在检索值的时候才被用到<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Object.create = function(o)&#123;</div><div class="line">    var F = function()&#123;&#125;</div><div class="line">    F.prototype = o;</div><div class="line">    return new F();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var myCat = Object.create(myMammal);</div><div class="line">myCat.name = &apos;Henrietta&apos;;</div><div class="line">myCat.get_name = function()&#123;</div><div class="line">    ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="函数化模式（再读一遍）"><a href="#函数化模式（再读一遍）" class="headerlink" title="函数化模式（再读一遍）"></a>函数化模式（再读一遍）</h2><h2 id="部件"><a href="#部件" class="headerlink" title="部件"></a>部件</h2><h1 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h1><blockquote>
+<p>类数组（array-like），实质是对象，并且对象可接受任何字符串作为属性名 </p>
+</blockquote>
+<h2 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h2><ul>
+<li>delete<blockquote>
+<p><code>delete numbers[2]</code> 会在数组中留下一个空洞，排在被删除元素之后的元素保留着最初属性</p>
+</blockquote>
+</li>
+<li>splice<blockquote>
+<p><code>splice(index, num)</code>，删除元素并可以替换为其他元素。<br>index 数组中要删除元素需要<br>num 要删除元素个数<br>被删除属性后面的每个属性被移除，并且以一个新的键值重新插入  </p>
+</blockquote>
+</li>
+</ul>
+<h2 id="判断是否是数组"><a href="#判断是否是数组" class="headerlink" title="判断是否是数组"></a>判断是否是数组</h2><blockquote>
+<p><code>typeof</code> 运算符报告数组的类型是 ‘object’  </p>
+</blockquote>
+<ul>
+<li>方法一<blockquote>
+<p>缺点： 识别从不同的窗口（window）或帧（frame）里构造的数组时会失败</p>
+</blockquote>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var is_array = function(value) &#123;</div><div class="line">    return value &amp;&amp;</div><div class="line">        typeof value === &apos;object&apos; &amp;&amp;</div><div class="line">        value.constructor === &apos;Array&apos;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>方法二<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var is_array = function(value) &#123;</div><div class="line">    return Object.prototype.toString.apply(value) === &apos;[object Array]&apos;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><ul>
+<li>Array.prototye 可以被扩充</li>
+<li>数组是对象，可以直接给单独的数组添加方法</li>
+<li>使用 Object.create 方法用在数组没有意义，因为它产生一个对象，而不是一个数组。产生的对象将继承这个数组的值和方法，但它没有那个特殊的 length 属性。<blockquote>
+<p>即：继承了 Object.prototype, 未继承 Array.prototype</p>
+</blockquote>
+</li>
+</ul>
+<h1 id="正则"><a href="#正则" class="headerlink" title="正则"></a>正则</h1><h2 id="一个例子"><a href="#一个例子" class="headerlink" title="一个例子"></a>一个例子</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var parse_url = /^(?:([A-Za-z]+):)?(\/&#123;0,3&#125;)([0-9.\-A-Za-z]+)(?::(\d+))?(?:\/(^#?))?(?:\?([^#]*))?(?:#(.*))?$/;</div></pre></td></tr></table></figure>
+<p>提取片段包括：url scheme slash host port path query hash  </p>
+<blockquote>
+<p>(?:…) 非捕获型分组<br>^ 匹配开始<br>$ 匹配结束</p>
+</blockquote>
+<h2 id="贪婪与非贪婪匹配"><a href="#贪婪与非贪婪匹配" class="headerlink" title="贪婪与非贪婪匹配"></a>贪婪与非贪婪匹配</h2><ul>
+<li><a href="http://www.jianshu.com/p/7fa165acd51e" target="_blank" rel="external">关于JS正则表达式的贪婪模式与非贪婪模式</a></li>
+</ul>
+<h1 id="毒瘤"><a href="#毒瘤" class="headerlink" title="毒瘤"></a>毒瘤</h1><h2 id="全局变量"><a href="#全局变量" class="headerlink" title="全局变量"></a>全局变量</h2><p>三种方式声明全局变量  </p>
+<ul>
+<li><p>在任何函数之外放置一个 var 语句</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var foo = value;</div></pre></td></tr></table></figure>
+</li>
+<li><p>直接给全局对象添加一个属性</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">window.foo = value;</div></pre></td></tr></table></figure>
+</li>
+<li><p>直接使用未经声明的变量，称为隐式的全局变量</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">foo = value;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="作用域-1"><a href="#作用域-1" class="headerlink" title="作用域"></a>作用域</h2><blockquote>
+<p>JavaScript 有块语法，但是没有提供块级作用域：代码块中声明的变量在包含此代码块的函数的任何位置都是课件。</p>
+<p>推荐：在每个函数的开头部分申明所有的变量</p>
+</blockquote>
+<h2 id="自动插入分号"><a href="#自动插入分号" class="headerlink" title="自动插入分号"></a>自动插入分号</h2><blockquote>
+<p>JavaScript 自动修复机制：通过自动插入分号来修正有缺损的程序。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">return</div><div class="line">&#123;</div><div class="line">    status: true</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>自动插入分号，导致返回 undefined<br>把 { 放在上一行的末尾</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">return &#123;</div><div class="line">    status: true</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h2 id="保留字"><a href="#保留字" class="headerlink" title="保留字"></a>保留字</h2><blockquote>
+<p>不能被用来命名变量或参数。当保留字被用做对象字面量的键值时，必须加引号括起来。</p>
+<p>不能被用在点表示法中，使用括号表示法。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">object = &#123;&apos;case&apos;: value&#125;;</div><div class="line">object[&apos;case&apos;] = value;</div></pre></td></tr></table></figure>
+<h2 id="typeof"><a href="#typeof" class="headerlink" title="typeof"></a>typeof</h2><ul>
+<li>typeof null 返回 ‘object’<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">if (my_value &amp;&amp; typeof my_value === &apos;object&apos;) &#123;</div><div class="line">    //my_value 是一个对象或数组</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="parseInt"><a href="#parseInt" class="headerlink" title="parseInt"></a>parseInt</h2><ul>
+<li><p>遇到非数字时会停止解析</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">parseInt(&apos;16&apos;);</div><div class="line">parseInt(&apos;16 tons&apos;);</div><div class="line">//产生相同结果</div></pre></td></tr></table></figure>
+</li>
+<li><p>如果该字符串第一个字符是0， 会基于八进制求值。parseInt可以接受一个基数作为参数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">parseInt(&apos;08&apos;);</div><div class="line">parseInt(&apos;08&apos;, 10);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="浮点数"><a href="#浮点数" class="headerlink" title="浮点数"></a>浮点数</h2><ul>
+<li>二进制的浮点数不能正确处理十进制的小数，即，0.1 + 0.2 不等于 0.3</li>
+<li>浮点数中的整数运算时精准的。 <blockquote>
+<p>举例：美元可以通过乘以 100 全部转成美分，准确将美分相加。和再除以 100 转回美元</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="NaN"><a href="#NaN" class="headerlink" title="NaN"></a>NaN</h2><ul>
+<li>NaN 表示不是一个数字</li>
+<li><p>typeof 不能辨别数字和 NaN</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">typeof NaN === &apos;number&apos; //true</div></pre></td></tr></table></figure>
+</li>
+<li><p>NaN 不等同于它自己</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">NaN === NaN //false</div><div class="line">NaN !== NaN //true</div></pre></td></tr></table></figure>
+</li>
+<li><p>JavaScript 提供 isNaN 函数，辨别数字与NaN</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">isNaN(NaN) //true</div><div class="line">isNaN(0)   //false</div><div class="line">isNaN(&apos;oops&apos;) //true</div><div class="line">isNaN(&apos;0&apos;)  //false</div></pre></td></tr></table></figure>
+</li>
+<li><p>isFinite 函数判断一个值是否可用做数字，筛选掉NaN 和 Infinity；但是它会试图把它的运算数转化为一个数字</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">//推荐 isNumber 函数写法：</div><div class="line">var isNumber = function(value) &#123;</div><div class="line">    return typeof value === &apos;number&apos; &amp;&amp; isFinite(value);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="伪数组"><a href="#伪数组" class="headerlink" title="伪数组"></a>伪数组</h2><ul>
+<li>JavaScript 没有真正的数组</li>
+<li>typeof 不能辨别数组和对象<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">//solution 1</div><div class="line">// 对于在不同帧或窗口创建的数组将会给出false</div><div class="line">if (my_value &amp;&amp; typeof my_value === &apos;object&apos; &amp;&amp; </div><div class="line">    my_value.constructor === Array) &#123;</div><div class="line">        //my_value 是一个数组</div><div class="line">    &#125;</div><div class="line">//solution 2 推荐</div><div class="line">if (Object.prototype.toString.apply(my_value) === &apos;[object Array]&apos;)&#123;</div><div class="line">    //my_value 确实是一个数组</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="假值"><a href="#假值" class="headerlink" title="假值"></a>假值</h2><p>表A-1：JavaScript 的众多假值<br>|值|类型|<br>|—|—|<br>|0|Number|<br>|NaN(非数字)|Number|<br>|’’(空字符串)|String|<br>|false|Boolean|<br>|null|Object|<br>|undefined|Undefined|</p>
+<blockquote>
+<p>这些值全部都等同于假</p>
+<p>undefined是缺失的成员属性的值</p>
+</blockquote>
+<h1 id="糟粕"><a href="#糟粕" class="headerlink" title="糟粕"></a>糟粕</h1><h2 id=""><a href="#" class="headerlink" title="=="></a>==</h2><ul>
+<li><code>===</code> 与 <code>!==</code> ：判断两个运算数类型一致且拥有相同的值</li>
+<li><code>==</code> 与 <code>!=</code> ：当两个值是不同的类型，它们会去强制转换值的类型；缺乏传递性<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&apos;&apos; == &apos;0&apos;             //false</div><div class="line">0 == &apos;&apos;               //true </div><div class="line">0 == &apos;0&apos;              //true</div><div class="line"></div><div class="line">false == &apos;false&apos;      //false</div><div class="line">false == &apos;0&apos;          //true</div><div class="line"></div><div class="line">false == undefined    //false</div><div class="line">false == null         //false</div><div class="line">null == undefined     //true</div><div class="line"></div><div class="line">&apos; \t\r\n&apos; == 0        //true</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="with"><a href="#with" class="headerlink" title="with"></a>with</h2><blockquote>
+<p>本意用来快捷地访问对象属性；但是结果不可预料，避免使用；影响 JavaScript 处理器的速度，因为它阻断了变量名的词法作用域绑定</p>
+</blockquote>
+<h2 id="eval"><a href="#eval" class="headerlink" title="eval"></a>eval</h2><ul>
+<li>使代码难以阅读</li>
+<li>性能降低</li>
+<li>减弱安全性</li>
+</ul>
+<h2 id="continue"><a href="#continue" class="headerlink" title="continue"></a>continue</h2><ul>
+<li>降低性能</li>
+</ul>
+<h2 id="switch-穿越"><a href="#switch-穿越" class="headerlink" title="switch 穿越"></a>switch 穿越</h2><ul>
+<li>危险</li>
+</ul>
+<h2 id="缺少块的语句"><a href="#缺少块的语句" class="headerlink" title="缺少块的语句"></a>缺少块的语句</h2><ul>
+<li>危险</li>
+</ul>
+<h2 id="–"><a href="#–" class="headerlink" title="++ –"></a>++ –</h2><ul>
+<li>容易造成缓冲区溢出错误</li>
+</ul>
+
       
     </div>
 
@@ -439,6 +578,10 @@ Apply调用模式作用域JavaScript 有函数作用域，定义在函数中的�
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/10/10/frontend/extendLib/" rel="prev" title="">
+                 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -498,7 +641,7 @@ Apply调用模式作用域JavaScript 有函数作用域，定义在函数中的�
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
-               src="/images/avatar.gif"
+               src="/images/11.png"
                alt="Jenny Chen" />
           <p class="site-author-name" itemprop="name">Jenny Chen</p>
            
@@ -509,8 +652,8 @@ Apply调用模式作用域JavaScript 有函数作用域，定义在函数中的�
 
           
             <div class="site-state-item site-state-posts">
-              <a href="/archives">
-                <span class="site-state-item-count">5</span>
+              <a href="/">
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -521,7 +664,7 @@ Apply调用模式作用域JavaScript 有函数作用域，定义在函数中的�
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -532,7 +675,7 @@ Apply调用模式作用域JavaScript 有函数作用域，定义在函数中的�
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -562,6 +705,10 @@ Apply调用模式作用域JavaScript 有函数作用域，定义在函数中的�
                   <a href="http://codepub.cn" title="IT草根" target="_blank">IT草根</a>
                 </li>
               
+                <li class="links-of-blogroll-item">
+                  <a href="https://linghucong.js.org/" title="令狐葱@前端笔记" target="_blank">令狐葱@前端笔记</a>
+                </li>
+              
             </ul>
           </div>
         
@@ -581,7 +728,7 @@ Apply调用模式作用域JavaScript 有函数作用域，定义在函数中的�
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#函数"><span class="nav-number">1.</span> <span class="nav-text">函数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#调用"><span class="nav-number">1.1.</span> <span class="nav-text">调用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#方法调用模式"><span class="nav-number">1.1.1.</span> <span class="nav-text">方法调用模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数调用模式"><span class="nav-number">1.1.2.</span> <span class="nav-text">函数调用模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#构造器调用模式"><span class="nav-number">1.1.3.</span> <span class="nav-text">构造器调用模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Apply调用模式"><span class="nav-number">1.1.4.</span> <span class="nav-text">Apply调用模式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#作用域"><span class="nav-number">1.2.</span> <span class="nav-text">作用域</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#闭包"><span class="nav-number">1.3.</span> <span class="nav-text">闭包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模块"><span class="nav-number">1.4.</span> <span class="nav-text">模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#级联"><span class="nav-number">1.5.</span> <span class="nav-text">级联</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#继承"><span class="nav-number">2.</span> <span class="nav-text">继承</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#伪类"><span class="nav-number">2.1.</span> <span class="nav-text">伪类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原型"><span class="nav-number">2.2.</span> <span class="nav-text">原型</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#函数"><span class="nav-number">1.</span> <span class="nav-text">函数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#调用"><span class="nav-number">1.1.</span> <span class="nav-text">调用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#方法调用模式"><span class="nav-number">1.1.1.</span> <span class="nav-text">方法调用模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数调用模式"><span class="nav-number">1.1.2.</span> <span class="nav-text">函数调用模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#构造器调用模式"><span class="nav-number">1.1.3.</span> <span class="nav-text">构造器调用模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Apply调用模式"><span class="nav-number">1.1.4.</span> <span class="nav-text">Apply调用模式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#作用域"><span class="nav-number">1.2.</span> <span class="nav-text">作用域</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#闭包"><span class="nav-number">1.3.</span> <span class="nav-text">闭包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模块"><span class="nav-number">1.4.</span> <span class="nav-text">模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#级联"><span class="nav-number">1.5.</span> <span class="nav-text">级联</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#继承"><span class="nav-number">2.</span> <span class="nav-text">继承</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基于类继承-——-伪类"><span class="nav-number">2.1.</span> <span class="nav-text">基于类继承 —— 伪类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基于原型继承"><span class="nav-number">2.2.</span> <span class="nav-text">基于原型继承</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数化模式（再读一遍）"><span class="nav-number">2.3.</span> <span class="nav-text">函数化模式（再读一遍）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#部件"><span class="nav-number">2.4.</span> <span class="nav-text">部件</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数组"><span class="nav-number">3.</span> <span class="nav-text">数组</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#删除"><span class="nav-number">3.1.</span> <span class="nav-text">删除</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#判断是否是数组"><span class="nav-number">3.2.</span> <span class="nav-text">判断是否是数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法"><span class="nav-number">3.3.</span> <span class="nav-text">方法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#正则"><span class="nav-number">4.</span> <span class="nav-text">正则</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一个例子"><span class="nav-number">4.1.</span> <span class="nav-text">一个例子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#贪婪与非贪婪匹配"><span class="nav-number">4.2.</span> <span class="nav-text">贪婪与非贪婪匹配</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#毒瘤"><span class="nav-number">5.</span> <span class="nav-text">毒瘤</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#全局变量"><span class="nav-number">5.1.</span> <span class="nav-text">全局变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#作用域-1"><span class="nav-number">5.2.</span> <span class="nav-text">作用域</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自动插入分号"><span class="nav-number">5.3.</span> <span class="nav-text">自动插入分号</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#保留字"><span class="nav-number">5.4.</span> <span class="nav-text">保留字</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#typeof"><span class="nav-number">5.5.</span> <span class="nav-text">typeof</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#parseInt"><span class="nav-number">5.6.</span> <span class="nav-text">parseInt</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#浮点数"><span class="nav-number">5.7.</span> <span class="nav-text">浮点数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NaN"><span class="nav-number">5.8.</span> <span class="nav-text">NaN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#伪数组"><span class="nav-number">5.9.</span> <span class="nav-text">伪数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#假值"><span class="nav-number">5.10.</span> <span class="nav-text">假值</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#糟粕"><span class="nav-number">6.</span> <span class="nav-text">糟粕</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">6.1.</span> <span class="nav-text">==</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#with"><span class="nav-number">6.2.</span> <span class="nav-text">with</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#eval"><span class="nav-number">6.3.</span> <span class="nav-text">eval</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#continue"><span class="nav-number">6.4.</span> <span class="nav-text">continue</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#switch-穿越"><span class="nav-number">6.5.</span> <span class="nav-text">switch 穿越</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#缺少块的语句"><span class="nav-number">6.6.</span> <span class="nav-text">缺少块的语句</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#–"><span class="nav-number">6.7.</span> <span class="nav-text">++ –</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -603,7 +750,7 @@ Apply调用模式作用域JavaScript 有函数作用域，定义在函数中的�
       <div class="footer-inner">
         <div class="copyright" >
   
-  &copy; 
+  &copy;  2015 - 
   <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
@@ -619,10 +766,12 @@ Apply调用模式作用域JavaScript 有函数作用域，定义在函数中的�
 <div class="theme-info">
   主题 -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Mist
+    NexT.Pisces
   </a>
 </div>
 
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div>本站总访问量 <span id="busuanzi_value_site_pv"></span> 次, 访客数 <span id="busuanzi_value_site_uv"></span> 人次</div>
 
         
 
@@ -697,6 +846,13 @@ Apply调用模式作用域JavaScript 有函数作用域，定义在函数中的�
 
   
   
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
 
   
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
