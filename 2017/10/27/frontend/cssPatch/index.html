@@ -89,13 +89,13 @@
 
 <meta name="description" content="字体变色参考：Toolkit工具1234567891011.intro span &amp;#123;    position: relative;    top: -30px;    left: -40px;    background-image: -webkit-gradient(linear, 0 0, 0 bottom, from(rgba(160, 198, 230, 1)), to(rgba">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CSS 样式代码片段">
+<meta property="og:title" content="CSS & JavaScript 代码片段">
 <meta property="og:url" content="http://yoursite.com/2017/10/27/frontend/cssPatch/index.html">
 <meta property="og:site_name" content="PineApple の 学习笔记">
 <meta property="og:description" content="字体变色参考：Toolkit工具1234567891011.intro span &amp;#123;    position: relative;    top: -30px;    left: -40px;    background-image: -webkit-gradient(linear, 0 0, 0 bottom, from(rgba(160, 198, 230, 1)), to(rgba">
-<meta property="og:updated_time" content="2017-10-27T06:43:51.377Z">
+<meta property="og:updated_time" content="2018-03-22T03:32:35.129Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CSS 样式代码片段">
+<meta name="twitter:title" content="CSS & JavaScript 代码片段">
 <meta name="twitter:description" content="字体变色参考：Toolkit工具1234567891011.intro span &amp;#123;    position: relative;    top: -30px;    left: -40px;    background-image: -webkit-gradient(linear, 0 0, 0 bottom, from(rgba(160, 198, 230, 1)), to(rgba">
 
 
@@ -130,7 +130,7 @@
 
 
 
-  <title> CSS 样式代码片段 | PineApple の 学习笔记 </title>
+  <title> CSS & JavaScript 代码片段 | PineApple の 学习笔记 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -280,7 +280,7 @@
             
             
               
-                CSS 样式代码片段
+                CSS & JavaScript 代码片段
               
             
           </h1>
@@ -354,6 +354,18 @@
 
       
         <h2 id="字体变色"><a href="#字体变色" class="headerlink" title="字体变色"></a>字体变色</h2><p>参考：<a href="http://zcy.ckcest.cn/Toolkit/regex" target="_blank" rel="external">Toolkit工具</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">.intro span &#123;</div><div class="line">    position: relative;</div><div class="line">    top: -30px;</div><div class="line">    left: -40px;</div><div class="line">    background-image: -webkit-gradient(linear, 0 0, 0 bottom, from(rgba(160, 198, 230, 1)), to(rgba(58, 85, 108, 1)));</div><div class="line">    -webkit-background-clip: text;</div><div class="line">    -webkit-text-fill-color: transparent;</div><div class="line">    font-family: &quot;Book Antiqua&quot;;</div><div class="line">    font-weight: 600;</div><div class="line">    font-size: 18px;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="超出文字点点点显示"><a href="#超出文字点点点显示" class="headerlink" title="超出文字点点点显示"></a>超出文字点点点显示</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">.ellipsis &#123;</div><div class="line">    white-space: nowrap;</div><div class="line">    text-overflow: ellipsis;</div><div class="line">    overflow: hidden;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="窗口平滑滚动至指定位置"><a href="#窗口平滑滚动至指定位置" class="headerlink" title="窗口平滑滚动至指定位置"></a>窗口平滑滚动至指定位置</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">$body = (window.opera) ? (document.compatMode == &quot;CSS1Compat&quot; ? $(&apos;html&apos;) : $(&apos;body&apos;)) : $(&apos;html,body&apos;);// 这行是 Opera 的补丁, 少了它 Opera 是直接用跳的而且画面闪烁 by willin</div><div class="line">$body.animate(&#123;scrollTop: $(&apos;.location&apos;).offset().top&#125;, 1000);</div><div class="line">``` </div><div class="line"></div><div class="line">## div 水平与垂直居中</div><div class="line"></div><div class="line">### CSS DIV水平居中</div><div class="line">&gt; 说明，本文中所指的DIV包括HTML页面中所有的元素。</div><div class="line">&gt; </div><div class="line">&gt; 让一个DIV水平居中，直接用CSS就可以做到。只要设置了DIV的宽度，然后使用margin设置边距0 auto，CSS自动算出左右边距，使得DIV居中。</div></pre></td></tr></table></figure>
+<p>.mydiv{<br>    margin:0 auto;<br>    width:300px;<br>    height:200px;<br>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">### CSS 水平与垂直居中</div><div class="line">&gt; 要让DIV水平和垂直居中，必需知道该DIV得宽度和高度，然后设置位置为绝对位置，距离页面窗口左边框和上边框的距离设置为50%，这个50%就是指页面窗口的宽度和高度的50%，最后将该DIV分别左移和上移，左移和上移的大小就是该DIV宽度和高度的一半。</div></pre></td></tr></table></figure></p>
+<p>.mydiv{<br>  width:300px;<br>  height:200px;<br>  position:absolute;<br>  left:50%;<br>  top:50%;<br>  margin:-100px 0 0 -150px<br>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">该方法使用普遍，但是前提是必需设置DIV的宽度和高度。如果当页面DIV宽度和高度是动态的，比方说需要弹出一个DIV层并且要居中显示，DIV的内容是动态的，所以宽度和高度也是动态的，这时需要用jQuery可以解决居中。</div><div class="line"></div><div class="line">### CSS3 实现水平与垂直居中</div><div class="line">&gt; CSS3 弹性盒子(Flex Box)</div><div class="line">&gt; </div><div class="line">&gt; 使用弹性盒子，居中变的很简单，只想要设置 margin: auto; 可以使得弹性子元素在两上轴方向上完全居中:</div></pre></td></tr></table></figure></p>
+<p>.flex-container {<br>    display: -webkit-flex;<br>    display: flex;<br>    width: 400px;<br>    height: 250px;<br>    background-color: lightgrey;<br>}</p>
+<p>.flex-item {<br>    background-color: cornflowerblue;<br>    width: 75px;<br>    height: 75px;<br>    margin: auto;<br>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">### jQuery 动态实现水平和垂直居中</div><div class="line">&gt; jQuery实现水平和垂直居中的原理就是通过jQuery设置DIV的CSS，获取DIV的左、上的边距偏移量，边距偏移量的算法就是用页面窗口的宽度减去该DIV得宽度，得到的值再除以2即左偏移量，右偏移量算法相同。注意DIV的CSS设置要在resize()方法中完成，就是每次改变窗口大小时，都要执行设置DIV的CSS，代码如下：</div></pre></td></tr></table></figure></p>
+<p>$(window).resize(function(){<br>    $(“.mydiv”).css({<br>        position: “absolute”,<br>        left: ($(window).width() - $(“.mydiv”).outerWidth())/2,<br>        top: ($(window).height() - $(“.mydiv”).outerHeight())/2<br>    });<br>});<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">此外在页面载入时，就需要调用resize()。</div></pre></td></tr></table></figure></p>
+<p>$(function(){<br>    $(window).resize();<br>});<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">此方法的好处就是不需要知道DIV的具体宽度和高度大小，直接用jQuery就可以实现水平和垂直居中，而且兼容各浏览器，这个方法在很多的弹出层效果中应用。</div><div class="line"></div><div class="line"></div><div class="line">## 分页样式</div><div class="line">采自[W3CSchool](http://www.runoob.com/css3/css3-pagination.html)</div></pre></td></tr></table></figure></p>
+<p><style><br>ul.pagination {<br>    display: inline-block;<br>    padding: 0;<br>    margin: 0;<br>}<br>​<br>ul.pagination li {display: inline;}<br>​<br>ul.pagination li a {<br>    color: black;<br>    float: left;<br>    padding: 8px 16px;<br>    text-decoration: none;<br>    transition: background-color .3s;<br>    border: 1px solid #ddd;<br>}<br>​<br>ul.pagination li a.active {<br>    background-color: #4CAF50;<br>    color: white;<br>    border: 1px solid #4CAF50;<br>}<br>​<br>ul.pagination li a:hover:not(.active) {background-color: #ddd;}<br></style><br></p>
+<p><body><br>​</body></p>
+<p></p><h2>带边框分页</h2><p></p>
+<p><ul class="pagination"><br>  <li><a href="#">«</a></li><br>  <li><a href="#">1</a></li><br>  <li><a class="active" href="#">2</a></li><br>  <li><a href="#">3</a></li><br>  <li><a href="#">4</a></li><br>  <li><a href="#">5</a></li><br>  <li><a href="#">6</a></li><br>  <li><a href="#">7</a></li><br>  <li><a href="#">»</a></li><br></ul><br>​<br><br>```</p>
 
       
     </div>
@@ -480,7 +492,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/">
-                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -491,7 +503,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -555,7 +567,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#字体变色"><span class="nav-number">1.</span> <span class="nav-text">字体变色</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#字体变色"><span class="nav-number">1.</span> <span class="nav-text">字体变色</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#超出文字点点点显示"><span class="nav-number">2.</span> <span class="nav-text">超出文字点点点显示</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#窗口平滑滚动至指定位置"><span class="nav-number">3.</span> <span class="nav-text">窗口平滑滚动至指定位置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">4.</span> <span class="nav-text">带边框分页</span></a></li></ol></div>
             
 
           </div>

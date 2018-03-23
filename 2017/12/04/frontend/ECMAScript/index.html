@@ -93,7 +93,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/12/04/frontend/ECMAScript/index.html">
 <meta property="og:site_name" content="PineApple の 学习笔记">
 <meta property="og:description" content="ECMAScript第六版已经于2015年发布，某些浏览器已经开始支持ES6了，这篇文章整理一下ES5以及ES6的新特性。">
-<meta property="og:updated_time" content="2017-12-05T01:55:55.139Z">
+<meta property="og:updated_time" content="2018-01-25T05:50:41.543Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ECMAScript5和ECMAScript6的新特性及浏览器支持情况">
 <meta name="twitter:description" content="ECMAScript第六版已经于2015年发布，某些浏览器已经开始支持ES6了，这篇文章整理一下ES5以及ES6的新特性。">
@@ -534,6 +534,13 @@
 </ol>
 <h3 id="ES6的浏览器支持情况"><a href="#ES6的浏览器支持情况" class="headerlink" title="ES6的浏览器支持情况"></a>ES6的浏览器支持情况</h3><p><strong>链接</strong>：<br><a href="http://www.xuebuyuan.com/2122607.html" target="_blank" rel="external">http://www.xuebuyuan.com/2122607.html</a><br><a href="http://kangax.github.io/compat-table/es6/" target="_blank" rel="external">http://kangax.github.io/compat-table/es6/</a><br>可以看出来，基本上是没有浏览器完全支持的，所以还是不要直接用的好。<br>但是有转换器 (更准确地说是源代码到源代码的编译器) 可以把ES6转换为被浏览器接受的ES5，比如Babel以及Traceur 之类的项目。其中Babel对 ES6 的支持程度比其它同类更高，而且 Babel 拥有完善的文档和一个很棒的在线交互式编程环境，因此用的比较多。</p>
 <p>作者：初夏_summer<br>原链接：<a href="http://www.jianshu.com/p/b6d76160889d" target="_blank" rel="external">http://www.jianshu.com/p/b6d76160889d</a></p>
+<h2 id="ECMAScript-6-入门"><a href="#ECMAScript-6-入门" class="headerlink" title="ECMAScript 6 入门"></a><a href="http://es6.ruanyifeng.com/#README" target="_blank" rel="external">ECMAScript 6 入门</a></h2><h3 id="let-和-const-命令"><a href="#let-和-const-命令" class="headerlink" title="let 和 const 命令"></a>let 和 const 命令</h3><ul>
+<li>ES5 只有全集作用域和函数作用域， ES6通过let增加块级作用域</li>
+<li><code>var</code> 会进行变量提升，<code>let</code> 和 <code>const</code> 声明变量会导致作用域在声明那行代码前称为Temoral Dead Zone（即，使用该变量报错<code>ReferenceError</code>）</li>
+</ul>
+<h3 id="ES6-声明变量的六种方法"><a href="#ES6-声明变量的六种方法" class="headerlink" title="ES6 声明变量的六种方法"></a>ES6 声明变量的六种方法</h3><blockquote>
+<p>ES5 只有两种声明变量的方法：var命令和function命令。ES6 除了添加let和const命令，后面章节还会提到，另外两种声明变量的方法：import命令和class命令。所以，ES6 一共有 6 种声明变量的方法。</p>
+</blockquote>
 
       
     </div>
@@ -576,8 +583,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/11/28/DNN/Neural MT Learning/" rel="next" title="Neural Machine Translation 学习笔记">
-                <i class="fa fa-chevron-left"></i> Neural Machine Translation 学习笔记
+              <a href="/2017/11/28/DNN/Neural MT Learning/" rel="next" title="神经机器翻译（NMT）相关资料整理">
+                <i class="fa fa-chevron-left"></i> 神经机器翻译（NMT）相关资料整理
               </a>
             
           </div>
@@ -660,7 +667,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/">
-                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -671,7 +678,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -735,7 +742,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ECMAScript简介"><span class="nav-number">1.</span> <span class="nav-text">ECMAScript简介</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ECMAScript的各个版本：（从第三版开始说）"><span class="nav-number">1.1.</span> <span class="nav-text">ECMAScript的各个版本：（从第三版开始说）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ECMAScript5的新特性"><span class="nav-number">1.2.</span> <span class="nav-text">ECMAScript5的新特性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ES5的浏览器支持情况"><span class="nav-number">1.2.1.</span> <span class="nav-text">ES5的浏览器支持情况</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ES6的新特性"><span class="nav-number">1.3.</span> <span class="nav-text">ES6的新特性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ES6的浏览器支持情况"><span class="nav-number">1.3.1.</span> <span class="nav-text">ES6的浏览器支持情况</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ECMAScript简介"><span class="nav-number">1.</span> <span class="nav-text">ECMAScript简介</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ECMAScript的各个版本：（从第三版开始说）"><span class="nav-number">1.1.</span> <span class="nav-text">ECMAScript的各个版本：（从第三版开始说）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ECMAScript5的新特性"><span class="nav-number">1.2.</span> <span class="nav-text">ECMAScript5的新特性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ES5的浏览器支持情况"><span class="nav-number">1.2.1.</span> <span class="nav-text">ES5的浏览器支持情况</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ES6的新特性"><span class="nav-number">1.3.</span> <span class="nav-text">ES6的新特性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ES6的浏览器支持情况"><span class="nav-number">1.3.1.</span> <span class="nav-text">ES6的浏览器支持情况</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ECMAScript-6-入门"><span class="nav-number">1.4.</span> <span class="nav-text">ECMAScript 6 入门</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#let-和-const-命令"><span class="nav-number">1.4.1.</span> <span class="nav-text">let 和 const 命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ES6-声明变量的六种方法"><span class="nav-number">1.4.2.</span> <span class="nav-text">ES6 声明变量的六种方法</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
