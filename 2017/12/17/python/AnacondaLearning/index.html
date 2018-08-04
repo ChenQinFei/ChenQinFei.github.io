@@ -95,7 +95,7 @@
 <meta property="og:site_name" content="PineApple の 学习笔记">
 <meta property="og:description" content="Anaconda 入门教程Anaconda 是什么？Anaconda 是一个可用于科学计算的 Python 发行版，支持 Linux、Mac、Windows系统，内置了常用的科学计算包。它解决了官方 Python 的两大痛点。
 第一：提供了包管理功能，Windows 平台安装第三方包经常失败的场景得以解决，第二：提供环境管理的功能，功能类似 Virtualenv，解决了多版本Python并存、切换">
-<meta property="og:updated_time" content="2018-01-07T16:05:37.072Z">
+<meta property="og:updated_time" content="2018-04-19T08:50:59.786Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Anaconda 入门教程">
 <meta name="twitter:description" content="Anaconda 入门教程Anaconda 是什么？Anaconda 是一个可用于科学计算的 Python 发行版，支持 Linux、Mac、Windows系统，内置了常用的科学计算包。它解决了官方 Python 的两大痛点。
@@ -359,10 +359,17 @@
         <h1 id="Anaconda-入门教程"><a href="#Anaconda-入门教程" class="headerlink" title="Anaconda 入门教程"></a>Anaconda 入门教程</h1><h2 id="Anaconda-是什么？"><a href="#Anaconda-是什么？" class="headerlink" title="Anaconda 是什么？"></a>Anaconda 是什么？</h2><p>Anaconda 是一个可用于科学计算的 Python 发行版，支持 Linux、Mac、Windows系统，内置了常用的科学计算包。它解决了官方 Python 的两大痛点。</p>
 <p>第一：提供了包管理功能，Windows 平台安装第三方包经常失败的场景得以解决，<br>第二：提供环境管理的功能，功能类似 Virtualenv，解决了多版本Python并存、切换的问题。</p>
 <h2 id="下载-Anaconda"><a href="#下载-Anaconda" class="headerlink" title="下载 Anaconda"></a>下载 Anaconda</h2><p>直接在官网下载安装包， 选择 Python3.6 的安装包进行下载，下载完成后直接安装，安装过程选择默认配置即可，大约需要1.8G的磁盘空间。</p>
+<p>安装的时候推荐不增加path环境变量，打开Anaconda Prompt就可以操作。</p>
 <h2 id="conda-工具介绍"><a href="#conda-工具介绍" class="headerlink" title="conda 工具介绍"></a>conda 工具介绍</h2><p>conda 是 Anaconda 下用于包管理和环境管理的工具，功能上类似 pip 和 vitualenv 的组合。安装成功后 conda 会默认加入到环境变量中，因此可直接在命令行窗口运行命令 conda</p>
-<p>conda 的环境管理与 virtualenv 是基本上是类似的操作。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"># 查看帮助</div><div class="line">conda -h </div><div class="line"># 基于python3.6版本创建一个名字为python36的环境</div><div class="line">conda create --name python36 python=3.6 </div><div class="line"># 激活此环境</div><div class="line">activate python36  </div><div class="line">source activate python36 # linux/mac</div><div class="line"># 再来检查python版本，显示是 3.6</div><div class="line">python -V  </div><div class="line"># 退出当前环境</div><div class="line">deactivate python36 </div><div class="line"># 删除该环境</div><div class="line">conda remove -n python36 --all</div><div class="line"># 或者 </div><div class="line">conda env remove  -n python36</div><div class="line"></div><div class="line"># 查看所以安装的环境</div><div class="line">conda info -e</div><div class="line">python36              *  D:\Programs\Anaconda3\envs\python36</div><div class="line">root                     D:\Programs\Anaconda3</div></pre></td></tr></table></figure></p>
+<p>conda 的环境管理与 virtualenv 是基本上是类似的操作。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"># 查看帮助</div><div class="line">conda -h </div><div class="line"></div><div class="line"># 基于python3.6版本创建一个名字为python36的环境</div><div class="line">conda create --name python36 python=3.6 </div><div class="line"></div><div class="line"># 激活此环境</div><div class="line">activate python36  </div><div class="line">source activate python36 # linux/mac</div><div class="line"># 再来检查python版本，显示是 3.6</div><div class="line">python -V  </div><div class="line"></div><div class="line"># 退出当前环境</div><div class="line">deactivate python36 </div><div class="line"></div><div class="line"># 删除该环境</div><div class="line">conda remove -n python36 --all</div><div class="line"># 或者 </div><div class="line">conda env remove  -n python36</div><div class="line"></div><div class="line"># 查看所以安装的环境</div><div class="line">conda info -e </div><div class="line"># 或者</div><div class="line">conda env list</div><div class="line">python36              *  D:\Programs\Anaconda3\envs\python36</div><div class="line">root                     D:\Programs\Anaconda3</div></pre></td></tr></table></figure></p>
 <p>conda 的包管理功能可 pip 是一样的，当然你选择 pip 来安装包也是没问题的。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"># 安装 matplotlib </div><div class="line">conda install matplotlib</div><div class="line"># 查看已安装的包</div><div class="line">conda list </div><div class="line"># 包更新</div><div class="line">conda update matplotlib</div><div class="line"># 删除包</div><div class="line">conda remove matplotlib</div></pre></td></tr></table></figure></p>
 <p>在 conda 中 anything is a package。conda 本身可以看作是一个包，python 环境可以看作是一个包，anaconda 也可以看作是一个包，因此除了普通的第三方包支持更新之外，这3个包也支持。比如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"># 更新conda本身</div><div class="line">conda update conda</div><div class="line"># 更新anaconda 应用</div><div class="line">conda update anaconda</div><div class="line"># 更新python，假设当前python环境是3.6.1，而最新版本是3.6.2，那么就会升级到3.6.2</div><div class="line">conda update python</div></pre></td></tr></table></figure></p>
+<h2 id="在pycharm中使用虚拟环境"><a href="#在pycharm中使用虚拟环境" class="headerlink" title="在pycharm中使用虚拟环境"></a>在pycharm中使用虚拟环境</h2><p>在Anaconda Prompt中查看新建的虚拟环境在哪个目录下：</p>
+<blockquote>
+<p>conda env list</p>
+</blockquote>
+<p>打开pycharm，<code>File-&gt;setting-&gt;Project:XXXX-&gt;Project Interperter</code></p>
+<p>点击“设置”按钮，选择 Add local，选择需要添加环境路径中的Python.exe</p>
 <h2 id="修改镜像地址"><a href="#修改镜像地址" class="headerlink" title="修改镜像地址"></a>修改镜像地址</h2><p>Anaconda 的镜像地址默认在国外，用 conda 安装包的时候会很慢，目前可用的国内镜像源地址有清华大学的。修改 ~/.condarc (Linux/Mac) 或 C:\Users\当前用户名.condarc (Windows) 配置：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">channels:</div><div class="line"> - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/</div><div class="line"> - defaults</div><div class="line">show_channel_urls: true</div></pre></td></tr></table></figure></p>
 <p>如果使用conda安装包的时候还是很慢，那么可以考虑使用pip来安装，同样把 pip 的镜像源地址也改成国内的，豆瓣源速度比较快。修改 ~/.pip/pip.conf (Linux/Mac) 或 C:\Users\当前用户名\pip\pip.ini (Windows) 配置：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[global]</div><div class="line">trusted-host =  pypi.douban.com</div><div class="line">index-url = http://pypi.douban.com/simple</div></pre></td></tr></table></figure></p>
 <p>环境搭建好之后就可以开始愉快地玩数据分析了。</p>
@@ -408,8 +415,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/12/05/frontend/practice01/" rel="next" title="webApp书城整站开发 学习笔记">
-                <i class="fa fa-chevron-left"></i> webApp书城整站开发 学习笔记
+              <a href="/2017/12/05/frontend/css/font用法详解/" rel="next" title="CSS Font 用法详解">
+                <i class="fa fa-chevron-left"></i> CSS Font 用法详解
               </a>
             
           </div>
@@ -418,8 +425,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/12/29/LinuxAndShell/" rel="prev" title="Linux and Shell 教程">
-                Linux and Shell 教程 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/12/29/cmd/" rel="prev" title="CMD 基础命令记录">
+                CMD 基础命令记录 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -492,7 +499,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/">
-                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-count">19</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -503,7 +510,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -514,7 +521,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">14</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -567,7 +574,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Anaconda-入门教程"><span class="nav-number">1.</span> <span class="nav-text">Anaconda 入门教程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Anaconda-是什么？"><span class="nav-number">1.1.</span> <span class="nav-text">Anaconda 是什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#下载-Anaconda"><span class="nav-number">1.2.</span> <span class="nav-text">下载 Anaconda</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#conda-工具介绍"><span class="nav-number">1.3.</span> <span class="nav-text">conda 工具介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改镜像地址"><span class="nav-number">1.4.</span> <span class="nav-text">修改镜像地址</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Anaconda-入门教程"><span class="nav-number">1.</span> <span class="nav-text">Anaconda 入门教程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Anaconda-是什么？"><span class="nav-number">1.1.</span> <span class="nav-text">Anaconda 是什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#下载-Anaconda"><span class="nav-number">1.2.</span> <span class="nav-text">下载 Anaconda</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#conda-工具介绍"><span class="nav-number">1.3.</span> <span class="nav-text">conda 工具介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在pycharm中使用虚拟环境"><span class="nav-number">1.4.</span> <span class="nav-text">在pycharm中使用虚拟环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改镜像地址"><span class="nav-number">1.5.</span> <span class="nav-text">修改镜像地址</span></a></li></ol></li></ol></div>
             
 
           </div>
