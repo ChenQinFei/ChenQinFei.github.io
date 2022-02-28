@@ -1,0 +1,782 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="前端,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0">
+
+
+
+
+
+
+<meta name="description" content="Understand SVG基本用法 SVG(Scalable Vector Graphics, 可伸缩矢量图)，解决多屏幕分辨率问题（无论放大多少，不会模糊）。  使用img标签直接使用图像插入至HTML文档，与其他插入图片（JPEG、PNG、GIF）差不多。1&amp;lt;img src=&amp;quot;sample.svg&amp;quot; alt=&amp;quot;svg img&amp;quot;/&amp;gt; 作为背景">
+<meta name="keywords" content="前端">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Understand SVG">
+<meta property="og:url" content="http://yoursite.com/2018/06/25/frontend/HTML/understand SVG/index.html">
+<meta property="og:site_name" content="PineApple の 学习笔记">
+<meta property="og:description" content="Understand SVG基本用法 SVG(Scalable Vector Graphics, 可伸缩矢量图)，解决多屏幕分辨率问题（无论放大多少，不会模糊）。  使用img标签直接使用图像插入至HTML文档，与其他插入图片（JPEG、PNG、GIF）差不多。1&amp;lt;img src=&amp;quot;sample.svg&amp;quot; alt=&amp;quot;svg img&amp;quot;/&amp;gt; 作为背景">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-06-19T09:40:41.025Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Understand SVG">
+<meta name="twitter:description" content="Understand SVG基本用法 SVG(Scalable Vector Graphics, 可伸缩矢量图)，解决多屏幕分辨率问题（无论放大多少，不会模糊）。  使用img标签直接使用图像插入至HTML文档，与其他插入图片（JPEG、PNG、GIF）差不多。1&amp;lt;img src=&amp;quot;sample.svg&amp;quot; alt=&amp;quot;svg img&amp;quot;/&amp;gt; 作为背景">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/06/25/frontend/HTML/understand SVG/">
+
+
+
+
+
+  <title> Understand SVG | PineApple の 学习笔记 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?0247b1d3b4cebef303651f40cd6eecdb";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">PineApple の 学习笔记</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/25/frontend/HTML/understand SVG/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ChenQinFei">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/11.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="PineApple の 学习笔记">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Understand SVG
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-25T14:42:52+08:00">
+                2018-06-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Understand-SVG"><a href="#Understand-SVG" class="headerlink" title="Understand SVG"></a>Understand SVG</h1><h2 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h2><blockquote>
+<p>SVG(Scalable Vector Graphics, 可伸缩矢量图)，解决多屏幕分辨率问题（无论放大多少，不会模糊）。</p>
+</blockquote>
+<h3 id="使用img标签"><a href="#使用img标签" class="headerlink" title="使用img标签"></a>使用<code>img</code>标签</h3><p>直接使用图像插入至HTML文档，与其他插入图片（JPEG、PNG、GIF）差不多。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=&quot;sample.svg&quot; alt=&quot;svg img&quot;/&gt;</span><br></pre></td></tr></table></figure></p>
+<h3 id="作为背景图像插入"><a href="#作为背景图像插入" class="headerlink" title="作为背景图像插入"></a>作为背景图像插入</h3><p>作为背景图像插入至HTML文档，与其他插入图片（JPEG、PNG、GIF）差不多。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">.item &#123;</span><br><span class="line">    background: url(&apos;image.png&apos;) no-repeat; // 向前兼容不支持svg浏览器</span><br><span class="line">    background: url(&apos;image.svg&apos;) left top / auto auto no-repeat</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="使用object标签"><a href="#使用object标签" class="headerlink" title="使用object标签"></a>使用<code>object</code>标签</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;object data=&quot;img/svgfile.svg&quot; type=&quot;image/svg+xml&quot;&gt;</span><br><span class="line">    &lt;span class=&quot;fallback-info&quot;&gt;你的浏览器不支持SVG&lt;/span&gt;</span><br><span class="line">    &lt;img src=&quot;fallback.png&quot; /&gt;</span><br><span class="line">&lt;/object&gt;</span><br></pre></td></tr></table></figure>
+<p>优点：</p>
+<ul>
+<li>可以被 JavaScript 访问，可以改变属性（fill）</li>
+<li>object 可以在浏览器不支持引入的数据类型的情况下做出反馈</li>
+</ul>
+<h3 id="内联SVG"><a href="#内联SVG" class="headerlink" title="内联SVG"></a>内联SVG</h3><p>直接在HTML文档中插入SVG标记，支持CSS、支持JavaScript<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">    &lt;h3&gt;Inserted &apos;inline&apos;:&lt;/h3&gt;</span><br><span class="line">    &lt;span&gt;</span><br><span class="line">        &lt;svg version=&quot;1.1&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;32&quot; height=&quot;32&quot; viewBox=&quot;0 0 32 32&quot;&gt;</span><br><span class="line">            &lt;title&gt;home&lt;/title&gt;</span><br><span class="line">            &lt;path d=&quot;M32 18.451l-16-12.42-16 12.42v-5.064l16-12.42 16 12.42zM28 18v12h-8v-8h-8v8h-8v-12l12-9z&quot;&gt;&lt;/path&gt;</span><br><span class="line">        &lt;/svg&gt;</span><br><span class="line">    &lt;/span&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
+<p>可以利用符号复用图像对象<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;svg display=&quot;none&quot; width=&quot;0&quot; height=&quot;0&quot; version=&quot;1.1&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;&gt;</span><br><span class="line">        &lt;defs&gt;</span><br><span class="line">            &lt;symbol id=&quot;icon-home&quot; viewBox=&quot;0 0 32 32&quot;&gt;</span><br><span class="line">                &lt;title&gt;home&lt;/title&gt;</span><br><span class="line">                &lt;path d=&quot;M32 18.451l-16-12.42-16 12.42v-5.064l16-12.42 16 12.42zM28 18v12h-8v-8h-8v8h-8v-12l12-9z&quot;&gt;&lt;/path&gt;</span><br><span class="line">            &lt;/symbol&gt;</span><br><span class="line">            ...</span><br><span class="line">        &lt;/defs&gt;</span><br><span class="line">    &lt;/svg&gt;</span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure></p>
+<p>在定义所有必须的符号元素后，开始正常的HTML编码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;svg class=&quot;icon-home&quot;&gt;</span><br><span class="line">    &lt;use xlink:href=&quot;icon-home&quot;&gt;&lt;/use&gt;</span><br><span class="line">&lt;/svg&gt;</span><br></pre></td></tr></table></figure></p>
+<p>此外，可使用use元素连接到外部SVG文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;svg class=&quot;icon-home&quot;&gt;</span><br><span class="line">    &lt;use xlink:href=&quot;defs.svg#icon-home&quot;&gt;&lt;/use&gt;</span><br><span class="line">&lt;/svg&gt;</span><br></pre></td></tr></table></figure></p>
+<h2 id="SVG-样式"><a href="#SVG-样式" class="headerlink" title="SVG 样式"></a>SVG 样式</h2><h3 id="使用外部样式表"><a href="#使用外部样式表" class="headerlink" title="使用外部样式表"></a>使用外部样式表</h3><blockquote>
+<p>该方法只在上述object、内联添加svg元素 奏效</p>
+</blockquote>
+<ul>
+<li><p>在defs部分添加：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;link href=&quot;style.css&quot; type=&quot;text/css&quot; /&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>官方方法，为XMl定义（唯一在IE上工作），在 SVG 元素前添加：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml-stylesheet href=&quot;style.css&quot; type=&quot;text/css&quot; ?&gt;</span><br><span class="line">&lt;svg...&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="使用内联样式"><a href="#使用内联样式" class="headerlink" title="使用内联样式"></a>使用内联样式</h3><blockquote>
+<p>该方法在上述所有方式添加svg元素都奏效</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;defs&gt;</span><br><span class="line">    &lt;style type=&quot;text/css&quot;&gt;</span><br><span class="line">        &lt;![CDATA[</span><br><span class="line">            #star_Path &#123;</span><br><span class="line">                stroke: red;</span><br><span class="line">            &#125;</span><br><span class="line">        ]]&gt;</span><br><span class="line">    &lt;/style&gt;</span><br><span class="line">&lt;/defs&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="资源-amp-工具"><a href="#资源-amp-工具" class="headerlink" title="资源 &amp; 工具"></a>资源 &amp; 工具</h2><ul>
+<li>图标资源库：<a href="https://icomoon.io" target="_blank" rel="noopener">https://icomoon.io</a> </li>
+<li>Iconizr – 生成data URI格式或者图片精灵： <a href="https://iconizr.com/" target="_blank" rel="noopener">https://iconizr.com/</a></li>
+</ul>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li>响应式Web设计 HTML5和CSS3实战（第2版）第7章：SVG与响应式Web设计</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/前端/" rel="tag"># 前端</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/08/frontend/HTML/HTML_CSS_Basic/" rel="next" title="HTML/CSS 基础">
+                <i class="fa fa-chevron-left"></i> HTML/CSS 基础
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/08/02/frontend/HTML/ajax_historybackprev/" rel="prev" title="ajax无刷新页面切换, 历史记录后退前进解决方案">
+                ajax无刷新页面切换, 历史记录后退前进解决方案 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/11.png" alt="ChenQinFei">
+          <p class="site-author-name" itemprop="name">ChenQinFei</p>
+           
+              <p class="site-description motion-element" itemprop="description">An Apple A Day Keeps The Doctor Away</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/">
+                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://codepub.cn" title="IT草根" target="_blank">IT草根</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://linghucong.js.org/" title="令狐葱@前端笔记" target="_blank">令狐葱@前端笔记</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Understand-SVG"><span class="nav-number">1.</span> <span class="nav-text">Understand SVG</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本用法"><span class="nav-number">1.1.</span> <span class="nav-text">基本用法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用img标签"><span class="nav-number">1.1.1.</span> <span class="nav-text">使用img标签</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#作为背景图像插入"><span class="nav-number">1.1.2.</span> <span class="nav-text">作为背景图像插入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用object标签"><span class="nav-number">1.1.3.</span> <span class="nav-text">使用object标签</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内联SVG"><span class="nav-number">1.1.4.</span> <span class="nav-text">内联SVG</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SVG-样式"><span class="nav-number">1.2.</span> <span class="nav-text">SVG 样式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用外部样式表"><span class="nav-number">1.2.1.</span> <span class="nav-text">使用外部样式表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用内联样式"><span class="nav-number">1.2.2.</span> <span class="nav-text">使用内联样式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#资源-amp-工具"><span class="nav-number">1.3.</span> <span class="nav-text">资源 &amp; 工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">1.4.</span> <span class="nav-text">参考资料</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ChenQinFei</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div>本站总访问量 <span id="busuanzi_value_site_pv"></span> 次, 访客数 <span id="busuanzi_value_site_uv"></span> 人次</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

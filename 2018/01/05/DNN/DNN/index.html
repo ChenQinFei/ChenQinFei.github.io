@@ -1,0 +1,808 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="DNN,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0">
+
+
+
+
+
+
+<meta name="description" content="Neural Network LearningImplementing a Neural Network from Scratch in Python – An IntroductionTraining a Neural Networkhttp://www.wildml.com/2015/09/implementing-a-neural-network-from-scratch/    训练三层网">
+<meta name="keywords" content="DNN">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Neural Network Learning">
+<meta property="og:url" content="http://yoursite.com/2018/01/05/DNN/DNN/index.html">
+<meta property="og:site_name" content="PineApple の 学习笔记">
+<meta property="og:description" content="Neural Network LearningImplementing a Neural Network from Scratch in Python – An IntroductionTraining a Neural Networkhttp://www.wildml.com/2015/09/implementing-a-neural-network-from-scratch/    训练三层网">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://d3kbpzbmcynnmx.cloudfront.net/wp-content/uploads/2015/09/nn-from-scratch-3-layer-network-1024x693.png">
+<meta property="og:image" content="http://s0.wp.com/latex.php?latex=%5Cbegin%7Baligned%7D++z_1+%26+%3D+xW_1+%2B+b_1+%5C%5C++a_1+%26+%3D+%5Ctanh%28z_1%29+%5C%5C++z_2+%26+%3D+a_1W_2+%2B+b_2+%5C%5C++a_2+%26+%3D+%5Chat%7By%7D+%3D+%5Cmathrm%7Bsoftmax%7D%28z_2%29++%5Cend%7Baligned%7D&bg=ffffff&fg=000&s=0">
+<meta property="og:image" content="http://s0.wp.com/latex.php?latex=%5Chat%7By%7D&bg=ffffff&fg=000&s=0">
+<meta property="og:image" content="http://s0.wp.com/latex.php?latex=%5Cbegin%7Baligned%7D++L%28y%2C%5Chat%7By%7D%29+%3D+-+%5Cfrac%7B1%7D%7BN%7D+%5Csum_%7Bn+%5Cin+N%7D+%5Csum_%7Bi+%5Cin+C%7D+y_%7Bn%2Ci%7D+%5Clog%5Chat%7By%7D_%7Bn%2Ci%7D++%5Cend%7Baligned%7D++&bg=ffffff&fg=000&s=0">
+<meta property="og:image" content="http://d3kbpzbmcynnmx.cloudfront.net/wp-content/uploads/2015/09/rnn.jpg">
+<meta property="og:image" content="http://d3kbpzbmcynnmx.cloudfront.net/wp-content/uploads/2015/09/bidirectional-rnn-300x196.png">
+<meta property="og:image" content="http://d3kbpzbmcynnmx.cloudfront.net/wp-content/uploads/2015/09/Screen-Shot-2015-09-16-at-2.21.51-PM-272x300.png">
+<meta property="og:updated_time" content="2019-06-19T09:40:41.021Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Neural Network Learning">
+<meta name="twitter:description" content="Neural Network LearningImplementing a Neural Network from Scratch in Python – An IntroductionTraining a Neural Networkhttp://www.wildml.com/2015/09/implementing-a-neural-network-from-scratch/    训练三层网">
+<meta name="twitter:image" content="http://d3kbpzbmcynnmx.cloudfront.net/wp-content/uploads/2015/09/nn-from-scratch-3-layer-network-1024x693.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/01/05/DNN/DNN/">
+
+
+
+
+
+  <title> Neural Network Learning | PineApple の 学习笔记 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?0247b1d3b4cebef303651f40cd6eecdb";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">PineApple の 学习笔记</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/05/DNN/DNN/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ChenQinFei">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/11.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="PineApple の 学习笔记">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Neural Network Learning
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-05T00:00:00+08:00">
+                2018-01-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Neural-Network-Learning"><a href="#Neural-Network-Learning" class="headerlink" title="Neural Network Learning"></a>Neural Network Learning</h1><h2 id="Implementing-a-Neural-Network-from-Scratch-in-Python-–-An-Introduction"><a href="#Implementing-a-Neural-Network-from-Scratch-in-Python-–-An-Introduction" class="headerlink" title="Implementing a Neural Network from Scratch in Python – An Introduction"></a>Implementing a Neural Network from Scratch in Python – An Introduction</h2><h3 id="Training-a-Neural-Network"><a href="#Training-a-Neural-Network" class="headerlink" title="Training a Neural Network"></a>Training a Neural Network</h3><p><a href="http://www.wildml.com/2015/09/implementing-a-neural-network-from-scratch/" target="_blank" rel="noopener">http://www.wildml.com/2015/09/implementing-a-neural-network-from-scratch/</a>  </p>
+<ul>
+<li>训练三层网络：input layer, one hhidden layer, one output layer</li>
+<li>The number of nodes in the input layer is determined by the dimensionality of our data, 2</li>
+<li>the number of nodes in the output layer is determined by the number of classes, 2(2 makes it easier to extend the network to more classes later on)</li>
+<li>activation function: transforms the inputs of the layer into its outputs. A nonlinear activation function is what allows us to fit nonlinear hypotheses. Common chocies for activation functions are tanh, the sigmoid function, or ReLUs. </li>
+<li>Because we want our network to output probabilities the activation function for the output layer will be the <a href="https://en.wikipedia.org/wiki/Softmax_function" target="_blank" rel="noopener">softmax</a>, which is simply a way to convert raw scores to probabilities. If you’re familiar with the logistic function you can think of softmax as its generalization to multiple classes.</li>
+</ul>
+<p><img src="http://d3kbpzbmcynnmx.cloudfront.net/wp-content/uploads/2015/09/nn-from-scratch-3-layer-network-1024x693.png" alt="image"></p>
+<p><strong>公式解释过程</strong></p>
+<p><img src="http://s0.wp.com/latex.php?latex=%5Cbegin%7Baligned%7D++z_1+%26+%3D+xW_1+%2B+b_1+%5C%5C++a_1+%26+%3D+%5Ctanh%28z_1%29+%5C%5C++z_2+%26+%3D+a_1W_2+%2B+b_2+%5C%5C++a_2+%26+%3D+%5Chat%7By%7D+%3D+%5Cmathrm%7Bsoftmax%7D%28z_2%29++%5Cend%7Baligned%7D&amp;bg=ffffff&amp;fg=000&amp;s=0" alt="image"></p>
+<p><strong>Loss Function</strong></p>
+<p>If we have N training examples and C classes then the loss for our prediction <img src="//s0.wp.com/latex.php?latex=%5Chat%7By%7D&amp;bg=ffffff&amp;fg=000&amp;s=0" alt="\hat{y}" title="\hat{y}" class="latex"> with respect to the true labels y is given by:</p>
+<p><img src="http://s0.wp.com/latex.php?latex=%5Cbegin%7Baligned%7D++L%28y%2C%5Chat%7By%7D%29+%3D+-+%5Cfrac%7B1%7D%7BN%7D+%5Csum_%7Bn+%5Cin+N%7D+%5Csum_%7Bi+%5Cin+C%7D+y_%7Bn%2Ci%7D+%5Clog%5Chat%7By%7D_%7Bn%2Ci%7D++%5Cend%7Baligned%7D++&amp;bg=ffffff&amp;fg=000&amp;s=0" alt="image"></p>
+<p>The formula looks complicated, but all it really does is sum over our training examples and add to the loss if we predicted the incorrect class. The further away the two probability distributions y (the correct labels) and \hat{y} (our predictions) are, the greater our loss will be. </p>
+<h2 id="RNN"><a href="#RNN" class="headerlink" title="RNN"></a>RNN</h2><h3 id="Recurrent-Neural-Networks-Tutorial-Part-1-–-Introduction-to-RNNs"><a href="#Recurrent-Neural-Networks-Tutorial-Part-1-–-Introduction-to-RNNs" class="headerlink" title="Recurrent Neural Networks Tutorial, Part 1 – Introduction to RNNs"></a>Recurrent Neural Networks Tutorial, Part 1 – Introduction to RNNs</h3><p><a href="http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-1-introduction-to-rnns/" target="_blank" rel="noopener">http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-1-introduction-to-rnns/</a></p>
+<h4 id="RNN介绍"><a href="#RNN介绍" class="headerlink" title="RNN介绍"></a>RNN介绍</h4><p><img src="http://d3kbpzbmcynnmx.cloudfront.net/wp-content/uploads/2015/09/rnn.jpg" alt="image"></p>
+<blockquote>
+<p>The formulas that govern the computation happening in a RNN are as follows:</p>
+</blockquote>
+<ul>
+<li>x_t is the input at time step t. For example, x_1 could be a one-hot vector corresponding to the second word of a sentence.</li>
+<li>s_t is the hidden state at time step t. It’s the “memory” of the network. s_t is calculated based on the previous hidden state and the input at the current step: s_t=f(Ux_t + Ws_{t-1}). The function f usually is a nonlinearity such as tanh or ReLU.  s_{-1}, which is required to calculate the first hidden state, is typically initialized to all zeroes.</li>
+<li>o_t is the output at step t. For example, if we wanted to predict the next word in a sentence it would be a vector of probabilities across our vocabulary. o_t = \mathrm{softmax}(Vs_t).</li>
+</ul>
+<blockquote>
+<p>There are a few things to note here:</p>
+</blockquote>
+<ul>
+<li>You can think of the hidden state s_t as <strong>the memory of the network</strong>. s_t captures information about what happened in all the previous time steps. The output at step o_t is calculated solely based on the memory at time t. As briefly mentioned above, it’s a bit more complicated  in practice because s_t typically can’t capture information from too many time steps ago.</li>
+<li>Unlike a traditional deep neural network, which uses different parameters at each layer, <strong>a RNN shares the same parameters (U, V, W above) across all steps</strong>. This reflects the fact that we are performing the same task at each step, just with different inputs. This greatly reduces the total number of parameters we need to learn.</li>
+<li>The above diagram has outputs at each time step, but depending on the task this may not be necessary. For example, when predicting the sentiment of a sentence we may only care about the final output, not the sentiment after each word. Similarly, we may not need inputs at each time step. The main feature of an RNN is its hidden state, which captures some information about a sequence.</li>
+</ul>
+<h4 id="RNN应用"><a href="#RNN应用" class="headerlink" title="RNN应用"></a>RNN应用</h4><ul>
+<li>Language Modeling and Generating Text</li>
+<li>Machine Translation</li>
+<li>Speech Recognition</li>
+<li>Generating Image Descriptions</li>
+</ul>
+<h4 id="RNN-Extensions"><a href="#RNN-Extensions" class="headerlink" title="RNN Extensions"></a>RNN Extensions</h4><ul>
+<li><strong>Bidirectional RNNs</strong> are based on the idea that the output at time t may not only depend on the previous elements in the sequence, but also future elements. For example, to predict a missing word in a sequence you want to look at both the left and the right context. Bidirectional RNNs are quite simple. They are just two RNNs stacked on top of each other. The output is then computed based on the hidden state of both RNNs.</li>
+</ul>
+<p><img src="http://d3kbpzbmcynnmx.cloudfront.net/wp-content/uploads/2015/09/bidirectional-rnn-300x196.png" alt="image"></p>
+<ul>
+<li><strong>Deep (Bidirectional) RNNs</strong> are similar to Bidirectional RNNs, only that we now have multiple layers per time step. In practice this gives us a higher learning capacity (but we also need a lot of training data).</li>
+</ul>
+<p><img src="http://d3kbpzbmcynnmx.cloudfront.net/wp-content/uploads/2015/09/Screen-Shot-2015-09-16-at-2.21.51-PM-272x300.png" alt="image"></p>
+<ul>
+<li><strong>LSTM networks</strong> are quite popular these days and we briefly talked about them above. LSTMs don’t have a fundamentally different architecture from RNNs, but they use a different function to compute the hidden state. The memory in LSTMs are called cells and you can think of them as black boxes that take as input the previous state h_{t-1} and current input x_t. Internally these cells  decide what to keep in (and what to erase from) memory. They then combine the previous state, the current memory, and the input. It turns out that these types of units are very efficient at capturing long-term dependencies. LSTMs can be quite confusing in the beginning but if you’re interested in learning more <a href="http://colah.github.io/posts/2015-08-Understanding-LSTMs/" target="_blank" rel="noopener">this post has an excellent explanation</a>.</li>
+</ul>
+<h3 id="Understanding-LSTM-Networks"><a href="#Understanding-LSTM-Networks" class="headerlink" title="Understanding LSTM Networks"></a>Understanding LSTM Networks</h3><p>RNN存在问题：不能解决 long-term dependencies。</p>
+<blockquote>
+<p>如预测 “the clouds are the sky” 中的最后一个词，RNN可以解决</p>
+<p>“I grew up in France… I speak fluent French.” Recent information suggests that the next word is probably <strong>the name of a language</strong>, but if we want to narrow down which language, we need the context of France, from further back. It’s entirely possible for the gap between the relevant information and the point where it is needed to become very large.</p>
+</blockquote>
+<p>Unfortunately, as that gap grows, RNNs become unable to learn to connect the information.</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/DNN/" rel="tag"># DNN</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/12/29/LinuxAndShell/" rel="next" title="Linux and Shell 教程">
+                <i class="fa fa-chevron-left"></i> Linux and Shell 教程
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/08/frontend/HTML/HTML_CSS_Basic/" rel="prev" title="HTML/CSS 基础">
+                HTML/CSS 基础 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/11.png" alt="ChenQinFei">
+          <p class="site-author-name" itemprop="name">ChenQinFei</p>
+           
+              <p class="site-description motion-element" itemprop="description">An Apple A Day Keeps The Doctor Away</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/">
+                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://codepub.cn" title="IT草根" target="_blank">IT草根</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://linghucong.js.org/" title="令狐葱@前端笔记" target="_blank">令狐葱@前端笔记</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Neural-Network-Learning"><span class="nav-number">1.</span> <span class="nav-text">Neural Network Learning</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Implementing-a-Neural-Network-from-Scratch-in-Python-–-An-Introduction"><span class="nav-number">1.1.</span> <span class="nav-text">Implementing a Neural Network from Scratch in Python – An Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Training-a-Neural-Network"><span class="nav-number">1.1.1.</span> <span class="nav-text">Training a Neural Network</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RNN"><span class="nav-number">1.2.</span> <span class="nav-text">RNN</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Recurrent-Neural-Networks-Tutorial-Part-1-–-Introduction-to-RNNs"><span class="nav-number">1.2.1.</span> <span class="nav-text">Recurrent Neural Networks Tutorial, Part 1 – Introduction to RNNs</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#RNN介绍"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">RNN介绍</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#RNN应用"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">RNN应用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#RNN-Extensions"><span class="nav-number">1.2.1.3.</span> <span class="nav-text">RNN Extensions</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Understanding-LSTM-Networks"><span class="nav-number">1.2.2.</span> <span class="nav-text">Understanding LSTM Networks</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ChenQinFei</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div>本站总访问量 <span id="busuanzi_value_site_pv"></span> 次, 访客数 <span id="busuanzi_value_site_uv"></span> 人次</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

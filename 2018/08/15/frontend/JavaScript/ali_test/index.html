@@ -1,0 +1,763 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="ES6,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0">
+
+
+
+
+
+
+<meta name="description" content="阿里前端测试题题目实现mergePromise函数，把传进去的数组顺序先后执行,并且把返回的数据先后放到数组data中. 123456789101112131415161718192021222324252627282930313233343536373839//实现mergePromise函数，把传进去的数组顺序先后执行，//并且把返回的数据先后放到数组data中 const timeout =">
+<meta name="keywords" content="ES6">
+<meta property="og:type" content="article">
+<meta property="og:title" content="阿里前端测试题 -- 实现mergePromise函数">
+<meta property="og:url" content="http://yoursite.com/2018/08/15/frontend/JavaScript/ali_test/index.html">
+<meta property="og:site_name" content="PineApple の 学习笔记">
+<meta property="og:description" content="阿里前端测试题题目实现mergePromise函数，把传进去的数组顺序先后执行,并且把返回的数据先后放到数组data中. 123456789101112131415161718192021222324252627282930313233343536373839//实现mergePromise函数，把传进去的数组顺序先后执行，//并且把返回的数据先后放到数组data中 const timeout =">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-06-19T09:40:41.026Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="阿里前端测试题 -- 实现mergePromise函数">
+<meta name="twitter:description" content="阿里前端测试题题目实现mergePromise函数，把传进去的数组顺序先后执行,并且把返回的数据先后放到数组data中. 123456789101112131415161718192021222324252627282930313233343536373839//实现mergePromise函数，把传进去的数组顺序先后执行，//并且把返回的数据先后放到数组data中 const timeout =">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/08/15/frontend/JavaScript/ali_test/">
+
+
+
+
+
+  <title> 阿里前端测试题 -- 实现mergePromise函数 | PineApple の 学习笔记 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?0247b1d3b4cebef303651f40cd6eecdb";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">PineApple の 学习笔记</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/15/frontend/JavaScript/ali_test/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ChenQinFei">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/11.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="PineApple の 学习笔记">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                阿里前端测试题 -- 实现mergePromise函数
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-15T20:42:52+08:00">
+                2018-08-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="阿里前端测试题"><a href="#阿里前端测试题" class="headerlink" title="阿里前端测试题"></a>阿里前端测试题</h1><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>实现mergePromise函数，把传进去的数组顺序先后执行,并且把返回的数据先后放到数组data中.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">//实现mergePromise函数，把传进去的数组顺序先后执行，</span><br><span class="line">//并且把返回的数据先后放到数组data中</span><br><span class="line"> </span><br><span class="line">const timeout = ms =&gt; new Promise((resolve, reject) =&gt; &#123;</span><br><span class="line">    setTimeout(() =&gt; &#123;</span><br><span class="line">        resolve();</span><br><span class="line">    &#125;, ms);</span><br><span class="line">&#125;);</span><br><span class="line"> </span><br><span class="line">const ajax1 = () =&gt; timeout(2000).then(() =&gt; &#123;</span><br><span class="line">    console.log(&apos;1&apos;);</span><br><span class="line">    return 1;</span><br><span class="line">&#125;);</span><br><span class="line"> </span><br><span class="line">const ajax2 = () =&gt; timeout(1000).then(() =&gt; &#123;</span><br><span class="line">    console.log(&apos;2&apos;);</span><br><span class="line">    return 2;</span><br><span class="line">&#125;);</span><br><span class="line"> </span><br><span class="line">const ajax3 = () =&gt; timeout(2000).then(() =&gt; &#123;</span><br><span class="line">    console.log(&apos;3&apos;);</span><br><span class="line">    return 3;</span><br><span class="line">&#125;);</span><br><span class="line"> </span><br><span class="line">const mergePromise = ajaxArray =&gt; &#123;</span><br><span class="line">    // 在这里实现你的代码</span><br><span class="line">&#125;;</span><br><span class="line"> </span><br><span class="line">mergePromise([ajax1, ajax2, ajax3]).then(data =&gt; &#123;</span><br><span class="line">    console.log(&apos;done&apos;);</span><br><span class="line">    console.log(data); // data 为 [1, 2, 3]</span><br><span class="line">&#125;);</span><br><span class="line"> </span><br><span class="line">// 分别输出</span><br><span class="line">// 1</span><br><span class="line">// 2</span><br><span class="line">// 3</span><br><span class="line">// done</span><br><span class="line">// [1, 2, 3]</span><br></pre></td></tr></table></figure>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><blockquote>
+<p>执手相看泪眼，竟无语凝噎。通过阮一峰老师的<a href="http://es6.ruanyifeng.com/" target="_blank" rel="noopener">ECMAScript 6 入门</a>学习 ES6，只是粗浅掌握，没有实践，碰到题目有点慌，最后还是没做出来。</p>
+<p>现在想来，题目思路要求还是比较清楚的。</p>
+<p>提供的ajax1、ajax2、ajax3 方法调用之后返回三个promise对象，如果同时执行三个方法的话（promise对象是立即执行的），输出数字的顺序是2,1,3</p>
+<p>所以我们需要做的是 ajax1执行完之后，执行ajax2，再执行ajax3</p>
+<p>此外，调用 mergePromise 方法返回的应该是一个promise对象，且在执行完ajax3之后才转成resolve状态。</p>
+</blockquote>
+<p>比较粗暴的写法:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> mergePromise = <span class="function"><span class="params">ajaxArray</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 在这里实现你的代码</span></span><br><span class="line">    <span class="keyword">let</span> arr = [];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span>&#123;</span><br><span class="line">        ajaxArray[<span class="number">0</span>]()</span><br><span class="line">        .then(<span class="function"><span class="params">data</span> =&gt;</span> &#123;arr.push(data);<span class="keyword">return</span> ajaxArray[<span class="number">1</span>]();&#125;)</span><br><span class="line">        .then(<span class="function"><span class="params">data</span> =&gt;</span> &#123;arr.push(data);<span class="keyword">return</span> ajaxArray[<span class="number">2</span>]();&#125;)</span><br><span class="line">        .then(<span class="function"><span class="params">data</span> =&gt;</span> &#123;arr.push(data);resolve(arr);&#125;)</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h2><blockquote>
+<p>当然思路中的解答只是便于大家直接看明白，接下来提供几个答案，摘录于牛客网前端岗<a href="https://www.nowcoder.com/discuss/86244?type=0&amp;order=0&amp;pos=30&amp;page=1" target="_blank" rel="noopener">阿里在线编程题交流贴</a>。</p>
+</blockquote>
+<h3 id="我的解答"><a href="#我的解答" class="headerlink" title="我的解答"></a>我的解答</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">const mergePromise = ajaxArray =&gt; &#123;</span><br><span class="line">    // 在这里实现你的代码</span><br><span class="line">    var arr = [];</span><br><span class="line">    var sequence = Promise.resolve();</span><br><span class="line">    ajaxArray.forEach(function(item)&#123;</span><br><span class="line">        sequence = sequence.then(data =&gt; &#123;return item()&#125;).then(function(res)&#123;</span><br><span class="line">             arr.push(res);</span><br><span class="line">             return arr;</span><br><span class="line">        &#125;); </span><br><span class="line">    &#125;)</span><br><span class="line"> </span><br><span class="line">    return sequence;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="解答1"><a href="#解答1" class="headerlink" title="解答1"></a>解答1</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">const mergePromise = ajaxArray =&gt; new Promise((resolve) =&gt; &#123;</span><br><span class="line">    let len = ajaxArray.length;</span><br><span class="line">    let data = []</span><br><span class="line">    async function fn(ajaxArray) &#123;</span><br><span class="line">        for (let i = 0; i &lt; len; i++) &#123;</span><br><span class="line">            let item = await ajaxArray[i]();</span><br><span class="line">            data.push(item)</span><br><span class="line">        &#125;</span><br><span class="line">        resolve(data)</span><br><span class="line">    &#125;</span><br><span class="line">    fn(ajaxArray);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="解答2"><a href="#解答2" class="headerlink" title="解答2"></a>解答2</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">const mergePromise = ajaxArray =&gt; &#123;</span><br><span class="line">    // 在这里实现你的代码</span><br><span class="line">    return new Promise((resolve, reject) =&gt; &#123; //返回一个新的Promise</span><br><span class="line">        let arr = []; //定义一个空数组存放结果</span><br><span class="line">        let i = 0;</span><br><span class="line">        function handleData(index, data) &#123; //处理数据函数</span><br><span class="line">            arr[index] = data;</span><br><span class="line">            i++;</span><br><span class="line">            if (i === ajaxArray.length) &#123; //当i等于传递的数组的长度时</span><br><span class="line">                resolve(arr); //执行resolve,并将结果放入</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        function handlePromise(i)&#123;</span><br><span class="line">            if(i &gt;= ajaxArray.length)</span><br><span class="line">                return;</span><br><span class="line">            ajaxArray[i]().then((data) =&gt; &#123;</span><br><span class="line">                handleData(i, data); //将结果和索引传入handleData函数</span><br><span class="line">                handlePromise(i+1);</span><br><span class="line">            &#125;, reject)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="解答3"><a href="#解答3" class="headerlink" title="解答3"></a>解答3</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">function mergePromise(ajaxArray)&#123;</span><br><span class="line">    let arr = [];</span><br><span class="line">    let p = Promise.resolve();</span><br><span class="line">    ajaxArray.forEach(item=&gt;&#123;</span><br><span class="line">        p = p.then(data=&gt;&#123;</span><br><span class="line">            if(data)&#123;</span><br><span class="line">                arr.push(data);</span><br><span class="line">            &#125;</span><br><span class="line">            return item();</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;)</span><br><span class="line">    return p.then(data=&gt;&#123;</span><br><span class="line">        arr.push(data);</span><br><span class="line">        return arr;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="解答4"><a href="#解答4" class="headerlink" title="解答4"></a>解答4</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">function mergePromise(ajaxArray)&#123;</span><br><span class="line">    let arr = [];</span><br><span class="line">    let p = ajaxArray.reduce((preAjax,curAjax)=&gt;&#123;</span><br><span class="line">       return preAjax.then(data=&gt;&#123;</span><br><span class="line">           if(data)</span><br><span class="line">           &#123;</span><br><span class="line">               arr.push(data);</span><br><span class="line">           &#125;</span><br><span class="line">           return curAjax();</span><br><span class="line">       &#125;)</span><br><span class="line">    &#125;,Promise.resolve())</span><br><span class="line">    return p.then(data=&gt;&#123;</span><br><span class="line">        arr.push(data);</span><br><span class="line">        return arr;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ES6/" rel="tag"># ES6</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/14/frontend/devtool/Chrome_devTools/" rel="next" title="优雅高效实用Chrome DevTools">
+                <i class="fa fa-chevron-left"></i> 优雅高效实用Chrome DevTools
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/09/03/codeVersioning/git/" rel="prev" title="Git基本命令">
+                Git基本命令 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/11.png" alt="ChenQinFei">
+          <p class="site-author-name" itemprop="name">ChenQinFei</p>
+           
+              <p class="site-description motion-element" itemprop="description">An Apple A Day Keeps The Doctor Away</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/">
+                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://codepub.cn" title="IT草根" target="_blank">IT草根</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://linghucong.js.org/" title="令狐葱@前端笔记" target="_blank">令狐葱@前端笔记</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#阿里前端测试题"><span class="nav-number">1.</span> <span class="nav-text">阿里前端测试题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目"><span class="nav-number">1.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#思路"><span class="nav-number">1.2.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#答案"><span class="nav-number">1.3.</span> <span class="nav-text">答案</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#我的解答"><span class="nav-number">1.3.1.</span> <span class="nav-text">我的解答</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解答1"><span class="nav-number">1.3.2.</span> <span class="nav-text">解答1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解答2"><span class="nav-number">1.3.3.</span> <span class="nav-text">解答2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解答3"><span class="nav-number">1.3.4.</span> <span class="nav-text">解答3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解答4"><span class="nav-number">1.3.5.</span> <span class="nav-text">解答4</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ChenQinFei</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div>本站总访问量 <span id="busuanzi_value_site_pv"></span> 次, 访客数 <span id="busuanzi_value_site_uv"></span> 人次</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

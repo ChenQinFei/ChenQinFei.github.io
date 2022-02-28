@@ -1,0 +1,932 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="devTools,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0">
+
+
+
+
+
+
+<meta name="description" content="优雅高效实用Chrome DevTools实用Command Line API Command Line API 包含一个用于执行以下常见任务的便捷函数集合：选择和检查 DOM 元素，以可读格式显示数据，停止和启动分析器，以及监控 DOM 事件。 Note: 此 API 仅能通过控制台本身获取。您无法通过网页上的脚本访问 Command Line API。  $_$是上一次表达式的计算结果。![$">
+<meta name="keywords" content="devTools">
+<meta property="og:type" content="article">
+<meta property="og:title" content="优雅高效实用Chrome DevTools">
+<meta property="og:url" content="http://yoursite.com/2018/08/14/frontend/devtool/Chrome_devTools/index.html">
+<meta property="og:site_name" content="PineApple の 学习笔记">
+<meta property="og:description" content="优雅高效实用Chrome DevTools实用Command Line API Command Line API 包含一个用于执行以下常见任务的便捷函数集合：选择和检查 DOM 元素，以可读格式显示数据，停止和启动分析器，以及监控 DOM 事件。 Note: 此 API 仅能通过控制台本身获取。您无法通过网页上的脚本访问 Command Line API。  $_$是上一次表达式的计算结果。![$">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://linchaoblogimg.qiniudn.com/chrome%240.png">
+<meta property="og:image" content="http://linchaoblogimg.qiniudn.com/chrome_seletor.png">
+<meta property="og:image" content="http://linchaoblogimg.qiniudn.com/chrome_copy.png">
+<meta property="og:image" content="http://linchaoblogimg.qiniudn.com/chrome_dir.png">
+<meta property="og:image" content="http://linchaoblogimg.qiniudn.com/chrome_event.png">
+<meta property="og:image" content="http://linchaoblogimg.qiniudn.com/chrome_monitor.png">
+<meta property="og:image" content="http://linchaoblogimg.qiniudn.com/chrome_monitorEvent.png">
+<meta property="og:image" content="http://linchaoblogimg.qiniudn.com/chrome_table.png">
+<meta property="og:image" content="http://linchaoblogimg.qiniudn.com/ctrlp.gif">
+<meta property="og:image" content="http://linchaoblogimg.qiniudn.com/ctrlo.gif">
+<meta property="og:image" content="http://linchaoblogimg.qiniudn.com/chromeesec.gif">
+<meta property="og:image" content="http://linchaoblogimg.qiniudn.com/123.gif">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_gif/s1EnB5eYnlXXJgGyH3CQbGhLWRttfWa7icyBPXSdLdInJXyHw5ia3QBvjGk9mcUSO9nH9DNz5ia5SVwibc9yrzc5iaQ/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1">
+<meta property="og:image" content="http://linchaoblogimg.qiniudn.com/chrome_debug1.png">
+<meta property="og:image" content="http://linchaoblogimg.qiniudn.com/chrome_debug2.png">
+<meta property="og:image" content="http://linchaoblogimg.qiniudn.com/breakpoint.gif">
+<meta property="og:image" content="http://linchaoblogimg.qiniudn.com/xhrpoint.gif">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_gif/s1EnB5eYnlUwHllesUIGOjvWT1v8Fowo9bDVPtTW3pJoiapU0AulrxoNNBoENzjXrfJkYoPPb1JfEO9JFe2ptGw/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_gif/s1EnB5eYnlXXJgGyH3CQbGhLWRttfWa754xbff739Uq5QksG28f0K8J7ngDgqSmVvoDyENEleJmYsE1K2IOt2g/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_gif/s1EnB5eYnlXXJgGyH3CQbGhLWRttfWa7esuicxW7wCGJSVib38AJS1yibIwWaNdTicdzSl1wg24YlicOcFIOgjkzYBQ/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_gif/s1EnB5eYnlXXJgGyH3CQbGhLWRttfWa7EZcKUnzclgdicUZkNE6nQ9gHN9cw7D0QG1jiaCwe7J0lOoLqtVJ2vjtQ/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_gif/s1EnB5eYnlXXJgGyH3CQbGhLWRttfWa78j2Jbz8DmYe48eaQcNoYxWHGic8EO7s2XUVibSUkrSVGW7MHBFzqzZ2g/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1">
+<meta property="og:updated_time" content="2019-06-19T09:40:41.028Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="优雅高效实用Chrome DevTools">
+<meta name="twitter:description" content="优雅高效实用Chrome DevTools实用Command Line API Command Line API 包含一个用于执行以下常见任务的便捷函数集合：选择和检查 DOM 元素，以可读格式显示数据，停止和启动分析器，以及监控 DOM 事件。 Note: 此 API 仅能通过控制台本身获取。您无法通过网页上的脚本访问 Command Line API。  $_$是上一次表达式的计算结果。![$">
+<meta name="twitter:image" content="http://linchaoblogimg.qiniudn.com/chrome%240.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/08/14/frontend/devtool/Chrome_devTools/">
+
+
+
+
+
+  <title> 优雅高效实用Chrome DevTools | PineApple の 学习笔记 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?0247b1d3b4cebef303651f40cd6eecdb";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">PineApple の 学习笔记</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/14/frontend/devtool/Chrome_devTools/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ChenQinFei">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/11.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="PineApple の 学习笔记">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                优雅高效实用Chrome DevTools
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-14T14:42:52+08:00">
+                2018-08-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="优雅高效实用Chrome-DevTools"><a href="#优雅高效实用Chrome-DevTools" class="headerlink" title="优雅高效实用Chrome DevTools"></a>优雅高效实用Chrome DevTools</h1><h2 id="实用Command-Line-API"><a href="#实用Command-Line-API" class="headerlink" title="实用Command Line API"></a>实用Command Line API</h2><blockquote>
+<p>Command Line API 包含一个用于执行以下常见任务的便捷函数集合：选择和检查 DOM 元素，以可读格式显示数据，停止和启动分析器，以及监控 DOM 事件。</p>
+<p>Note: 此 API 仅能通过控制台本身获取。您无法通过网页上的脚本访问 Command Line API。</p>
+</blockquote>
+<h3 id><a href="#" class="headerlink" title="$_"></a>$_</h3><p>$<em>是上一次表达式的计算结果。<br>![$</em>](<a href="https://developers.google.com/web/tools/chrome-devtools/console/images/recently-evaluated-expression-1.png?hl=zh-cn" target="_blank" rel="noopener">https://developers.google.com/web/tools/chrome-devtools/console/images/recently-evaluated-expression-1.png?hl=zh-cn</a>)</p>
+<h3 id="0"><a href="#0" class="headerlink" title="$0"></a>$0</h3><p>调试的时候，很方便的取到选择的dom节点</p>
+<p><img src="http://linchaoblogimg.qiniudn.com/chrome%240.png" alt="image"></p>
+<h3 id="selector-和-selector"><a href="#selector-和-selector" class="headerlink" title="$(selector) 和 $$(selector)"></a><code>$(selector)</code> 和 <code>$$(selector)</code></h3><blockquote>
+<p><code>$(selector)</code>返回带有指定的 CSS 选择器的第一个 DOM 元素的引用。此函数等同于  <code>document.querySelector()</code> 函数。</p>
+<p><code>$$(selector)</code>返回与给定 CSS 选择器匹配的元素数组。此命令等同于调用  <code>document.querySelectorAll()</code>。</p>
+</blockquote>
+<p><img src="http://linchaoblogimg.qiniudn.com/chrome_seletor.png" alt="image"></p>
+<h3 id="拷贝Object的-copy-Object"><a href="#拷贝Object的-copy-Object" class="headerlink" title="拷贝Object的 copy(Object)"></a>拷贝Object的 copy(Object)</h3><p>右键复制HTML？不，有更好的：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">copy($0)</span><br></pre></td></tr></table></figure></p>
+<p><img src="http://linchaoblogimg.qiniudn.com/chrome_copy.png" alt="image"></p>
+<h3 id="列出对象的所有属性-dir-objcet-和-列出事件的getEventListeners-object"><a href="#列出对象的所有属性-dir-objcet-和-列出事件的getEventListeners-object" class="headerlink" title="列出对象的所有属性 dir(objcet) 和 列出事件的getEventListeners(object)"></a>列出对象的所有属性 dir(objcet) 和 列出事件的getEventListeners(object)</h3><blockquote>
+<p>举个例子，我们想看一个dom节点的所有属性：</p>
+</blockquote>
+<p><img src="http://linchaoblogimg.qiniudn.com/chrome_dir.png" alt="image"></p>
+<blockquote>
+<p>如果想看这个dom上都有一些什么事件：</p>
+</blockquote>
+<p><img src="http://linchaoblogimg.qiniudn.com/chrome_event.png" alt="image"></p>
+<h3 id="记录方法的monitor-function-和-记录事件的-monitorEvents-object-events"><a href="#记录方法的monitor-function-和-记录事件的-monitorEvents-object-events" class="headerlink" title="记录方法的monitor(function) 和 记录事件的 monitorEvents(object[, events])"></a>记录方法的<code>monitor(function)</code> 和 记录事件的 <code>monitorEvents(object[, events])</code></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">monitor(jQuery.data);</span><br><span class="line">unmonitor(jQuery.data);</span><br><span class="line"></span><br><span class="line">monitorEvents(window, &quot;resize&quot;);</span><br><span class="line">unmonitorEvents(window, &quot;resize&quot;);</span><br><span class="line">monitorEvents(window, [&quot;resize&quot;, &quot;scroll&quot;])</span><br><span class="line">unmonitorEvents(window, [&quot;resize&quot;, &quot;scroll&quot;])</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>还是用jQuery的data来举例，有时候我们只是想知道这个方法被调用几次还有参数之类的，那么可以</p>
+</blockquote>
+<p><img src="http://linchaoblogimg.qiniudn.com/chrome_monitor.png" alt="image"></p>
+<blockquote>
+<p>如果需要监控事件被调用了几次、event对象是什么：</p>
+</blockquote>
+<p><img src="http://linchaoblogimg.qiniudn.com/chrome_monitorEvent.png" alt="image"></p>
+<blockquote>
+<p>可以监控的事件有：</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Event type</th>
+<th>Corresponding mapped events</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>mouse</td>
+<td>“mousedown”, “mouseup”, “click”, “dblclick”, “mousemove”, “mouseover”, “mouseout”, “mousewheel”</td>
+</tr>
+<tr>
+<td>key</td>
+<td>“keydown”, “keyup”, “keypress”, “textInput”</td>
+</tr>
+<tr>
+<td>touch</td>
+<td>“touchstart”, “touchmove”, “touchend”, “touchcancel”</td>
+</tr>
+<tr>
+<td>control</td>
+<td>“resize”, “scroll”, “zoom”, “focus”, “blur”, “select”, “change”, “submit”, “reset”</td>
+</tr>
+</tbody>
+</table>
+<h3 id="表格化显示object-table-data-columns"><a href="#表格化显示object-table-data-columns" class="headerlink" title="表格化显示object table(data[, columns])"></a>表格化显示object <code>table(data[, columns])</code></h3><p><img src="http://linchaoblogimg.qiniudn.com/chrome_table.png" alt="image"></p>
+<h2 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h2><h3 id="随意的文件跳转"><a href="#随意的文件跳转" class="headerlink" title="随意的文件跳转"></a>随意的文件跳转</h3><blockquote>
+<p>使用Sublime的同学，一定非常喜欢ctrl + p，这种随意的文件跳转，其实dev tools中也有类似的跳转，而且快捷键也是：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ctrl + p  // 跳转到对应文件</span><br><span class="line">ctrl + p + : + 数字 // 跳转到对应文件对应行</span><br></pre></td></tr></table></figure>
+<p><img src="http://linchaoblogimg.qiniudn.com/ctrlp.gif" alt="image"></p>
+<h3 id="随意的方法跳转"><a href="#随意的方法跳转" class="headerlink" title="随意的方法跳转"></a>随意的方法跳转</h3><blockquote>
+<p>Sublime中，ctrl + R是跳转到方法，漂亮的是 dev tools中也有类似的快捷键：</p>
+</blockquote>
+<p><code>ctrl + shift + o</code></p>
+<blockquote>
+<p>先用<code>ctrl + p</code>打开一个文件，然后<code>ctrl + shift + o</code>,跳转到任意一个方法。</p>
+</blockquote>
+<p><img src="http://linchaoblogimg.qiniudn.com/ctrlo.gif" alt="image"></p>
+<h3 id="快速打开关闭Console"><a href="#快速打开关闭Console" class="headerlink" title="快速打开关闭Console"></a>快速打开关闭Console</h3><blockquote>
+<p>屏幕不是很大的时候，一般都都会关掉Console，使得代码的可视范围能大一些，然后通过点击右上角的Show/Hide drawer按钮来打开或者关闭Console。其实这时候，可以快捷的使用ESC键来打开或者关闭Console。</p>
+</blockquote>
+<p><img src="http://linchaoblogimg.qiniudn.com/chromeesec.gif" alt="image"></p>
+<h3 id="Elements页卡中几个有用的快捷键"><a href="#Elements页卡中几个有用的快捷键" class="headerlink" title="Elements页卡中几个有用的快捷键"></a>Elements页卡中几个有用的快捷键</h3><ol>
+<li><p>方向键快速选择，上下键快速导航，左右键收起展开；</p>
+</li>
+<li><p>enter快速编辑属性；</p>
+</li>
+<li><p>tab属性切换；</p>
+</li>
+<li><p>H键快速隐藏dom，知道这个快捷键之前，我要么删除dom看效果，要么手工输入display:none，有H就方便多了。</p>
+</li>
+</ol>
+<p><img src="http://linchaoblogimg.qiniudn.com/123.gif" alt="image"></p>
+<h3 id="页面截图"><a href="#页面截图" class="headerlink" title="页面截图"></a>页面截图</h3><blockquote>
+<p>在新版本的Chrome 中，提供了一个截图的API，你可以将整个页面截图或者截取部分页面元素，且截取的图片尺寸跟浏览器当前视图中要截取的内容所占尺寸一致。截图输出的是png 格式的图片，会自动通过浏览器下载到默认的目录下。现在有三种截取的方式：截取整个页面、部分元素 或当前视图。</p>
+</blockquote>
+<p>截取页面部分元素的操作：</p>
+<ul>
+<li>在Elements 标签页，选中要截取的页面元素</li>
+<li>CMD + SHIFT + P ( windows 中用 CTRL + SHIFT + P ) 打开命令菜单</li>
+<li>输入screen检索，选择 Capture node screenshot</li>
+</ul>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_gif/s1EnB5eYnlXXJgGyH3CQbGhLWRttfWa7icyBPXSdLdInJXyHw5ia3QBvjGk9mcUSO9nH9DNz5ia5SVwibc9yrzc5iaQ/640?wx_fmt=gif&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1" alt="image"></p>
+<h3 id="快速模拟移动设备"><a href="#快速模拟移动设备" class="headerlink" title="快速模拟移动设备"></a>快速模拟移动设备</h3><p>快捷按钮：<code>ctrl+shift+M</code></p>
+<h2 id="调试与断点"><a href="#调试与断点" class="headerlink" title="调试与断点"></a>调试与断点</h2><h3 id="控制台设置断点：debug（function）"><a href="#控制台设置断点：debug（function）" class="headerlink" title="控制台设置断点：debug（function）"></a>控制台设置断点：<code>debug（function）</code></h3><p>很多时候，我们需要在运行到某一个方法的打个断点，之前的方式是打开这个文件，然后点一下，设置一个断点，但现在有一种很优雅的方式来做到这个：</p>
+<p>比如，在<code>jQuery.data</code>方法的时候中断下：</p>
+<p><img src="http://linchaoblogimg.qiniudn.com/chrome_debug1.png" alt="image"></p>
+<p>然后，就会跳转到sources调试的地方，这对于被压缩的代码，更是一种方便。<br><img src="http://linchaoblogimg.qiniudn.com/chrome_debug2.png" alt="image"></p>
+<p>取消断点：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">undebug(function)</span><br></pre></td></tr></table></figure></p>
+<h3 id="灵活的断点设置，使用条件断点"><a href="#灵活的断点设置，使用条件断点" class="headerlink" title="灵活的断点设置，使用条件断点"></a>灵活的断点设置，使用条件断点</h3><blockquote>
+<p>使用<code>add conditional breakpoint...</code></p>
+<p>在需要使用断点的地方，右键添加条件断点。</p>
+</blockquote>
+<p><img src="http://linchaoblogimg.qiniudn.com/breakpoint.gif" alt="image"></p>
+<h3 id="指定的XHR断点"><a href="#指定的XHR断点" class="headerlink" title="指定的XHR断点"></a>指定的XHR断点</h3><blockquote>
+<p>有时候，我们需要在指定的xhr请求的时候，有一个断点，那可以这样：</p>
+</blockquote>
+<p><img src="http://linchaoblogimg.qiniudn.com/xhrpoint.gif" alt="image"></p>
+<p>然后可以通过<code>call stack</code>快速的找到对应的代码。</p>
+<h3 id="DOM-断点调试"><a href="#DOM-断点调试" class="headerlink" title="DOM 断点调试"></a>DOM 断点调试</h3><blockquote>
+<p>基本上大家都会用JavaScript 的断点调试，但是应该很多人不知道DOM 节点也可以进行断点调试。ChromeDevTools提供了三种针对DOM 元素的断点调试：子元素改变时、属性改变时 和元素被移除时。</p>
+</blockquote>
+<p>操作：</p>
+<ul>
+<li>在<code>Elements</code> 标签页，选中一个元素</li>
+<li>右击，选择 <code>Breakon</code> –&gt; <code>subtree modifications</code>  (或<code>attribute modifications</code> 或<code>node removal</code> )</li>
+</ul>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><h3 id="Scroll-Into-View-滚动如视图内"><a href="#Scroll-Into-View-滚动如视图内" class="headerlink" title="Scroll Into View 滚动如视图内"></a>Scroll Into View 滚动如视图内</h3><blockquote>
+<p>在<code>Elements</code>标签中，查看页面元素的时候，如果当前这个元素不在视图内，可以通过这个方法让这个元素快速滚入视图中。</p>
+</blockquote>
+<p>操作：</p>
+<ul>
+<li>在<code>Elements</code>标签页中选择一个不在视图内的元素</li>
+<li>右击，选择<code>Scrollintoview</code></li>
+</ul>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_gif/s1EnB5eYnlUwHllesUIGOjvWT1v8Fowo9bDVPtTW3pJoiapU0AulrxoNNBoENzjXrfJkYoPPb1JfEO9JFe2ptGw/640?wx_fmt=gif&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1" alt="image"></p>
+<h3 id="Copy-As-Fetch-复制为-Fetch"><a href="#Copy-As-Fetch-复制为-Fetch" class="headerlink" title="Copy As Fetch 复制为 Fetch"></a>Copy As Fetch 复制为 Fetch</h3><blockquote>
+<p>在<code>Network</code>标签下的所有的请求，都可以复制为一个完整的Fetch 请求的代码。</p>
+</blockquote>
+<p>操作：</p>
+<ul>
+<li>在<code>Network</code>标签页中，选中一个请求</li>
+<li>右击，选择<code>Copy --&gt;Copyasfetch</code></li>
+</ul>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_gif/s1EnB5eYnlXXJgGyH3CQbGhLWRttfWa754xbff739Uq5QksG28f0K8J7ngDgqSmVvoDyENEleJmYsE1K2IOt2g/640?wx_fmt=gif&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1" alt="image"></p>
+<h3 id="阻塞请求"><a href="#阻塞请求" class="headerlink" title="阻塞请求"></a>阻塞请求</h3><blockquote>
+<p>在<code>Network</code>标签页下，选中一个请求，右击该请求，选择<code>Blockrequest domain</code> 或<code>Blockrequest URL</code>，可以分别阻塞该请求所在<code>domain</code>下的所有请求和该请求</p>
+</blockquote>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_gif/s1EnB5eYnlXXJgGyH3CQbGhLWRttfWa7esuicxW7wCGJSVib38AJS1yibIwWaNdTicdzSl1wg24YlicOcFIOgjkzYBQ/640?wx_fmt=gif&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1" alt="image"></p>
+<h3 id="拖动页面元素"><a href="#拖动页面元素" class="headerlink" title="拖动页面元素"></a>拖动页面元素</h3><blockquote>
+<p>在Elements 标签页，你可以拖动任何HTML 元素，改变它在页面中的位置。</p>
+</blockquote>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_gif/s1EnB5eYnlXXJgGyH3CQbGhLWRttfWa7EZcKUnzclgdicUZkNE6nQ9gHN9cw7D0QG1jiaCwe7J0lOoLqtVJ2vjtQ/640?wx_fmt=gif&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1" alt="image"></p>
+<h3 id="Overrides-重写，保存控制台修改的属性"><a href="#Overrides-重写，保存控制台修改的属性" class="headerlink" title="Overrides 重写，保存控制台修改的属性"></a>Overrides 重写，保存控制台修改的属性</h3><blockquote>
+<p>在 ChromeDevTools上调试css 或JavaScript时，修改的属性值在重新刷新页面时，所有的修改都会被重置。如果你想把修改的值保存下来，刷新页面的时候不会被重置，那就看看下面这个特性（<code>Overrides</code>）吧。<code>Overrides</code> 默认是关闭的，需要手动开启，开启的步骤如下。</p>
+</blockquote>
+<p>开启的操作：</p>
+<ul>
+<li>打开 <code>ChromeDevTools</code> 的 <code>Sources</code> 标签页</li>
+<li>选择 <code>Overrides</code> 子标签</li>
+<li>选择 +<code>Selectfolderforoverrides</code> ，来为 <code>Overrides</code> 设置一个保存重写属性的目录</li>
+</ul>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_gif/s1EnB5eYnlXXJgGyH3CQbGhLWRttfWa78j2Jbz8DmYe48eaQcNoYxWHGic8EO7s2XUVibSUkrSVGW7MHBFzqzZ2g/640?wx_fmt=gif&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1" alt="image"></p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a href="https://developers.google.com/web/tools/chrome-devtools/console/ctrl-line-reference?hl=zh-cn" target="_blank" rel="noopener">Command Line API 参考</a></li>
+<li><a href="http://lin-chao.github.io/2014/10/10/%E4%BC%98%E9%9B%85%E4%B8%94%E9%AB%98%E6%95%88%E7%9A%84%E4%BD%BF%E7%94%A8Chrome-Developer-Tools%E4%B8%8A/" target="_blank" rel="noopener">优雅且高效的使用Chrome Developer Tools（上）</a></li>
+<li><a href="http://lin-chao.github.io/2014/10/15/%E4%BC%98%E9%9B%85%E4%B8%94%E9%AB%98%E6%95%88%E7%9A%84%E4%BD%BF%E7%94%A8Chrome-Developer-Tools%E4%B8%8B/" target="_blank" rel="noopener">优雅且高效的使用Chrome-Developer-Tools（下）</a></li>
+<li><a href="https://mp.weixin.qq.com/s/8WYUkymh8JaxCrNVR_XdHw" target="_blank" rel="noopener">聊聊 Chrome DevTools 中你可能不知道的调试技巧</a> by zollero  前端微志</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/devTools/" rel="tag"># devTools</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/10/frontend/HTML/element_size/" rel="next" title="Dom 元素尺寸、位置获取">
+                <i class="fa fa-chevron-left"></i> Dom 元素尺寸、位置获取
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/08/15/frontend/JavaScript/ali_test/" rel="prev" title="阿里前端测试题 -- 实现mergePromise函数">
+                阿里前端测试题 -- 实现mergePromise函数 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/11.png" alt="ChenQinFei">
+          <p class="site-author-name" itemprop="name">ChenQinFei</p>
+           
+              <p class="site-description motion-element" itemprop="description">An Apple A Day Keeps The Doctor Away</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/">
+                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://codepub.cn" title="IT草根" target="_blank">IT草根</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://linghucong.js.org/" title="令狐葱@前端笔记" target="_blank">令狐葱@前端笔记</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#优雅高效实用Chrome-DevTools"><span class="nav-number">1.</span> <span class="nav-text">优雅高效实用Chrome DevTools</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#实用Command-Line-API"><span class="nav-number">1.1.</span> <span class="nav-text">实用Command Line API</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">1.1.1.</span> <span class="nav-text">$_</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0"><span class="nav-number">1.1.2.</span> <span class="nav-text">$0</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#selector-和-selector"><span class="nav-number">1.1.3.</span> <span class="nav-text">$(selector) 和 $$(selector)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#拷贝Object的-copy-Object"><span class="nav-number">1.1.4.</span> <span class="nav-text">拷贝Object的 copy(Object)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#列出对象的所有属性-dir-objcet-和-列出事件的getEventListeners-object"><span class="nav-number">1.1.5.</span> <span class="nav-text">列出对象的所有属性 dir(objcet) 和 列出事件的getEventListeners(object)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#记录方法的monitor-function-和-记录事件的-monitorEvents-object-events"><span class="nav-number">1.1.6.</span> <span class="nav-text">记录方法的monitor(function) 和 记录事件的 monitorEvents(object[, events])</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#表格化显示object-table-data-columns"><span class="nav-number">1.1.7.</span> <span class="nav-text">表格化显示object table(data[, columns])</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#快捷键"><span class="nav-number">1.2.</span> <span class="nav-text">快捷键</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#随意的文件跳转"><span class="nav-number">1.2.1.</span> <span class="nav-text">随意的文件跳转</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#随意的方法跳转"><span class="nav-number">1.2.2.</span> <span class="nav-text">随意的方法跳转</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#快速打开关闭Console"><span class="nav-number">1.2.3.</span> <span class="nav-text">快速打开关闭Console</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Elements页卡中几个有用的快捷键"><span class="nav-number">1.2.4.</span> <span class="nav-text">Elements页卡中几个有用的快捷键</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#页面截图"><span class="nav-number">1.2.5.</span> <span class="nav-text">页面截图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#快速模拟移动设备"><span class="nav-number">1.2.6.</span> <span class="nav-text">快速模拟移动设备</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#调试与断点"><span class="nav-number">1.3.</span> <span class="nav-text">调试与断点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#控制台设置断点：debug（function）"><span class="nav-number">1.3.1.</span> <span class="nav-text">控制台设置断点：debug（function）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#灵活的断点设置，使用条件断点"><span class="nav-number">1.3.2.</span> <span class="nav-text">灵活的断点设置，使用条件断点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#指定的XHR断点"><span class="nav-number">1.3.3.</span> <span class="nav-text">指定的XHR断点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DOM-断点调试"><span class="nav-number">1.3.4.</span> <span class="nav-text">DOM 断点调试</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他"><span class="nav-number">1.4.</span> <span class="nav-text">其他</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Scroll-Into-View-滚动如视图内"><span class="nav-number">1.4.1.</span> <span class="nav-text">Scroll Into View 滚动如视图内</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Copy-As-Fetch-复制为-Fetch"><span class="nav-number">1.4.2.</span> <span class="nav-text">Copy As Fetch 复制为 Fetch</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#阻塞请求"><span class="nav-number">1.4.3.</span> <span class="nav-text">阻塞请求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#拖动页面元素"><span class="nav-number">1.4.4.</span> <span class="nav-text">拖动页面元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Overrides-重写，保存控制台修改的属性"><span class="nav-number">1.4.5.</span> <span class="nav-text">Overrides 重写，保存控制台修改的属性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">1.5.</span> <span class="nav-text">参考资料</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ChenQinFei</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div>本站总访问量 <span id="busuanzi_value_site_pv"></span> 次, 访客数 <span id="busuanzi_value_site_uv"></span> 人次</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

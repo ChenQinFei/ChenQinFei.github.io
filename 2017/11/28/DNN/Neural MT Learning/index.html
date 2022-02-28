@@ -1,0 +1,895 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="Machine Translation,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0">
+
+
+
+
+
+
+<meta name="description" content="Neural Machine Translation 学习笔记 简介自2013年提出了神经机器翻译系统之后，神经机器翻译系统取得了很大的进展。最近几年相关的论文，开源系统也是层出不穷。本文主要梳理了神经机器翻译入门、进阶所需要阅读的资料和论文，并提供了相关链接以及简单的介绍，以及总结了相关的开源系统和业界大牛，以便其他的小伙伴可以更快的了解神经机器翻译这一领域。 随着知识的逐步积累，本文后续会持续">
+<meta name="keywords" content="Machine Translation">
+<meta property="og:type" content="article">
+<meta property="og:title" content="神经机器翻译（NMT）相关资料整理">
+<meta property="og:url" content="http://yoursite.com/2017/11/28/DNN/Neural MT Learning/index.html">
+<meta property="og:site_name" content="PineApple の 学习笔记">
+<meta property="og:description" content="Neural Machine Translation 学习笔记 简介自2013年提出了神经机器翻译系统之后，神经机器翻译系统取得了很大的进展。最近几年相关的论文，开源系统也是层出不穷。本文主要梳理了神经机器翻译入门、进阶所需要阅读的资料和论文，并提供了相关链接以及简单的介绍，以及总结了相关的开源系统和业界大牛，以便其他的小伙伴可以更快的了解神经机器翻译这一领域。 随着知识的逐步积累，本文后续会持续">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-06-19T09:40:41.022Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="神经机器翻译（NMT）相关资料整理">
+<meta name="twitter:description" content="Neural Machine Translation 学习笔记 简介自2013年提出了神经机器翻译系统之后，神经机器翻译系统取得了很大的进展。最近几年相关的论文，开源系统也是层出不穷。本文主要梳理了神经机器翻译入门、进阶所需要阅读的资料和论文，并提供了相关链接以及简单的介绍，以及总结了相关的开源系统和业界大牛，以便其他的小伙伴可以更快的了解神经机器翻译这一领域。 随着知识的逐步积累，本文后续会持续">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/11/28/DNN/Neural MT Learning/">
+
+
+
+
+
+  <title> 神经机器翻译（NMT）相关资料整理 | PineApple の 学习笔记 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?0247b1d3b4cebef303651f40cd6eecdb";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">PineApple の 学习笔记</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/28/DNN/Neural MT Learning/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ChenQinFei">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/11.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="PineApple の 学习笔记">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                神经机器翻译（NMT）相关资料整理
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-28T00:00:00+08:00">
+                2017-11-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Neural-Machine-Translation-学习笔记"><a href="#Neural-Machine-Translation-学习笔记" class="headerlink" title="Neural Machine Translation 学习笔记"></a>Neural Machine Translation 学习笔记</h1><p> 简介<br>自2013年提出了神经机器翻译系统之后，神经机器翻译系统取得了很大的进展。最近几年相关的论文，开源系统也是层出不穷。本文主要梳理了神经机器翻译入门、进阶所需要阅读的资料和论文，并提供了相关链接以及简单的介绍，以及总结了相关的开源系统和业界大牛，以便其他的小伙伴可以更快的了解神经机器翻译这一领域。</p>
+<p>随着知识的逐步积累，本文后续会持续更新。请关注。</p>
+<p>2 入门资料<br>这部分主要整理了神经机器翻译入门的资料以及所需的一些基础知识，如RNN、LSTM、GRU等。</p>
+<p>2.1 神经机器翻译入门资料</p>
+<ol>
+<li>CIPS青工委学术专栏第9期 | 神经机器翻译</li>
+</ol>
+<p>链接：<a href="http://www.cipsc.org.cn/qngw/?p=953" target="_blank" rel="noopener">http://www.cipsc.org.cn/qngw/?p=953</a></p>
+<p>介绍：由熊德意、张民等老师所写，梳理了神经机器翻译的历史发展；介绍了采用注意力机制的神经机器翻译模型的特点；总结了神经机器翻译的译文问题，1）如词汇表规模受限问题、2）源语言翻译覆盖问题、3）翻译不忠实问题；就当前的研究热点，大致就三个问题进行了讨论，1）规模受限词语表问题、2）注意力机制问题、3）神经机器翻译和传统统计机器翻译的结合。</p>
+<ol start="2">
+<li>基于深度学习的机器翻译研究进展</li>
+</ol>
+<p>链接：<a href="http://www.caai.cn/index.php?s=/Home/Article/qikandetail/year/2016/month/02.html" target="_blank" rel="noopener">http://www.caai.cn/index.php?s=/Home/Article/qikandetail/year/2016/month/02.html</a></p>
+<p>介绍：首先概括了统计机器翻译目前存在的一些问题，然后引入基于深度学习的机器翻译。主要分为两类：1）利用深度学习改进统计机器翻译；2）端到端神经机器翻译。利用深度学习改进统计机器翻译的核心思想是以统计机器翻译为主题，使用深度学习改进其中的关键模块，如语言模型、翻译模型、调序模型、词语对齐等，取得了显著的效果，但是依然存在线性不可分、非局部特征等问题。端到端神经机器翻译的基本思想是使用神经网络直接将源语言文本映射成目标语言文本。与统计机器翻译不同，不再有人工设计的词语对齐、短语切分、句法树等隐结构，不再需要人工设计特征，End 2 End神经机器翻译仅使用一个非线性的神经网络便能直接实现自然语言文本的转换。在基于End 2 End的框架之上，注意力模型被提出。当然端到端神经机器翻译也存在可解释性差、训练复杂度高等问题</p>
+<ol start="3">
+<li>ACL 2016 Tutorial – Neural Machine Translation</li>
+</ol>
+<p>链接：<a href="http://nlp.stanford.edu/projects/nmt/Luong-Cho-Manning-NMT-ACL2016-v4.pdf" target="_blank" rel="noopener">http://nlp.stanford.edu/projects/nmt/Luong-Cho-Manning-NMT-ACL2016-v4.pdf</a></p>
+<p>介绍：Lmthang在ACL 2016上所做的tutorial。主要介绍了1）神经机器翻译以及基于短语的统计机器翻译与神经机器翻译之间的关联；2）使用随机梯度法和BPTT训练循环语言模型，由于梯度消失等问题引入LSTM、GRU，基于编码器-解码器网络的机器翻译模型，基于束搜索的解码策略，神经机器翻译的集成模型；3）就词汇表、记忆力、语言复杂度、数据等问题进行了讨论；4）对多任务学习、更大的上下文、移动设备方面的应用、采用其他函数，而非最大似然函数估计等方面进行了展望。</p>
+<p>这个tutorial总结的非常全面和深入，可以结合后面提到的Lmthang的博士论文一起看。</p>
+<ol start="4">
+<li>神经机器翻译前沿进展</li>
+</ol>
+<p>链接：<a href="http://nlp.csai.tsinghua.edu.cn/~ly/talks/cwmt2016_ly_v3_160826.pptx" target="_blank" rel="noopener">http://nlp.csai.tsinghua.edu.cn/~ly/talks/cwmt2016_ly_v3_160826.pptx</a></p>
+<p>介绍：由清华大学的刘洋老师在第十二届全国机器翻译讨论会（2016年8月在乌鲁木齐举办）上做的报告。由于统计机器翻译存在的缺点，如线性模型难以处理高维空间中线性不可分的情况、需要人类专家设计特征、离散表示带来严重的数据稀疏问题、难以处理长距离依赖等问题，由此引入深度学习，为机器翻译带来新的思路——编码器-解码器框架。然后分别大致介绍了RNN、LSTM、注意力机制在神经机器翻译中的应用及其优缺点。最后总结了近期的研究进展，比如1）受限词汇量、2）细粒度意义单元、3）先验约束、4）记忆机制、5）训练准则、6）单语数据利用、7）多语言、8）多模态等。然后总结了神经机器翻译教程和开源工具。最后对比了统计机器翻译与神经机器翻译的特点。</p>
+<ol start="5">
+<li>CCL2016 | T1B: 深度学习与机器翻译</li>
+</ol>
+<p>链接：<a href="http://www.cips-cl.org/static/CCL2016/tutorialsT1B.html" target="_blank" rel="noopener">http://www.cips-cl.org/static/CCL2016/tutorialsT1B.html</a></p>
+<p>介绍：第十五届全国计算语言学会议（CCL 2016），第四届基于自然标注大数据的自然语言处理国际学术研讨会（NLP-NABD 2016）上分别由刘洋、张家俊两位老师做的tutorial。主要介绍统计机器翻译的基本模型、历史发展与不足。然后介绍基于深度学习的统计机器翻译，以及深度学习方法如何应用于统计机器翻译中的各个子模型，例如，词、短语与句子级翻译模型、调序模型和语言模型等；然后介绍了神经机器翻译的基本模型，包括编码器-解码器架构、注意力机制等，最后介绍了神经机器翻译的最新进展，例如，架构、训练、语言与多模态等，以及神经机器翻译的未来展望。</p>
+<ol start="6">
+<li>Neural Machine Translation</li>
+</ol>
+<p>链接：<a href="http://statmt.org/mtma16/uploads/mtma16-neural.pdf" target="_blank" rel="noopener">http://statmt.org/mtma16/uploads/mtma16-neural.pdf</a></p>
+<p>介绍：介绍了神经机器翻译，包括语言模型，基于注意力的编码器-解码器，以及就神经机器翻译领域当前的研究、机会和挑战展开了讨论。其中，tutorial中的例子很具体，并结合了Python代码，很形象生动。</p>
+<p>2.2 循环神经网络入门资料<br>RNN</p>
+<p>RECURRENT NEURAL NETWORKS TUTORIAL, PART 1 – INTRODUCTION TO RNNS ，以语言模型为例对RNN进行讲解。</p>
+<p>supervised sequence labelling with recurrent neural network ，Deep Learning中讲解RNN部分参考的论文，作者Alex Graves是LSTM的提出者Jurgen Schmidhuber的博士。</p>
+<p>Training RECURRENT NEURAL NETWORKS ， 作者IIya Sutskever是Hinton的博士，也是Seq 2 Seq的提出者。</p>
+<p>LSTM</p>
+<p>RECURRENT NEURAL NETWORK TUTORIAL, PART 4 – IMPLEMENTING A GRU/LSTM RNN WITH PYTHON AND THEANO ，可结合下一篇博客一起看。</p>
+<p>Understanding LSTM Networks ，很形象的讲解了LSTM的原理。</p>
+<p>long short-term memory ， LSTM的原始Paper。</p>
+<p>GRU</p>
+<p>Learning Phrase Representations using RNN Encoder–Decoder For Statistical Machine Translation ， GRU的原始Paper。</p>
+<p>3 进阶资料<br>这部分主要整理了神经机器翻译这一领域最近几年发表的一些有代表性的论文，包括End 2 End框架、注意力机制、MRT训练、 漏译与过译等问题。</p>
+<p>下面是Lmthang的博士论文，非常值得一读。</p>
+<p>NEURAL MACHINE TRANSLATION</p>
+<p>关键词：拷贝机制；Attention机制；混合模型</p>
+<p>下载链接：<a href="https://github.com/lmthang/thesis/thesis.pdf" target="_blank" rel="noopener">https://github.com/lmthang/thesis/thesis.pdf</a></p>
+<p>介绍：Lmthang的博士论文。主要对机器翻译的发展历程进行概括，包括统计机器翻译、神经机器翻译。然后介绍了自己的一些成果，包括1）针对神经机器翻译的未登录词问题提出的拷贝机制；2）针对神经机器翻译的注意力机制进行改进；3）针对未登录词问题提出了混合模型，针对常见词使用基于词的模型，针对未登录词使用基于字符的模型；4）就神经机器翻译的后续发展进行了展望。论文写的非常清晰易懂，值得大家一读。</p>
+<p>3.1 End 2 End 框架</p>
+<ol>
+<li>recurrent continuous translation models</li>
+</ol>
+<p>关键词：End 2 End框架</p>
+<p>下载链接：<a href="http://www.aclweb.org/anthology/D13-1176" target="_blank" rel="noopener">http://www.aclweb.org/anthology/D13-1176</a></p>
+<p>介绍：2013年，英国牛津大学的Kalchbrenner和Blunsom首先提出了End 2 End神经机器翻译，他们为机器翻译提出了一个“编码-解码”的新框架：给定一个源语言句子，首先使用一个解码器将其映射为一个连续、稠密的向量，然后再使用一个解码器将该向量转化为一个目标语言句子。编码器使用的是卷积神经网络（Convolutional Neural Network），解码器用的是递归神经网络（Recurrent Neural Network）。使用递归神经网络具有能够捕获全部历史信息和传力变长字符串的优点。这是一个非常大胆的新架构，用非线性模型取代统计机器翻译的线性模型；用单个复杂的神经网络取代隐结构流水线；用连接编码器和解码器的向量来描述语义等价性；用递归神经网络捕获无限长的历史信息。然后End 2 End神经机器翻译最初并没有获得理想的翻译性能，一个重要原因是训练递归神经网络时面临着“梯度消失”和“梯度爆炸”问题。因此，虽然递归神经网络理论上能够捕获无限长的历史信息，但实际上难以真正处理长距离的依赖关系。</p>
+<ol start="2">
+<li>sequence to sequence learning with neural networks</li>
+</ol>
+<p>关键词：End 2 End框架</p>
+<p>下载链接：<a href="http://papers.nips.cc/paper/5346-sequence-to-sequence-learning-with-neural-networks.pdf" target="_blank" rel="noopener">http://papers.nips.cc/paper/5346-sequence-to-sequence-learning-with-neural-networks.pdf</a></p>
+<p>介绍：2014年，Google公司的Sutskever等人将长短期记忆（Long Short-Term Memory）引入End 2 End神经机器翻译，长短期记忆通过采用设计门开关（gate）的方法解决了训练递归神经网络时的“梯度消失”和“梯度爆炸”问题，能够较好地捕获长距离依赖。与Kalchbrenner和Blunsom的工作不同，无论是编码器还是解码器，Sutskever等人都采用了递归神经网络。当生成目标语言词时，解码器不但考虑整个源语言句子的信息，还考虑已经生成的部分译文。由于引入长短期记忆，End 2 End神经机器翻译的性能得到了大幅度提升，取得了与传统统计机器相当甚至更好的准确率。然后，这种新的框架仍面临要给重要的挑战，即不管是较长的源语言句子，还是较短的源语言句子，编码器都需要将其映射到一个维度固定的向量，这对实现准确的编码提出了极大的挑战。</p>
+<ol start="3">
+<li>Learning phrase representations using rnn encoder-decoder for statistical machine translation</li>
+</ol>
+<p>关键词：End 2 End 框架</p>
+<p>下载链接：<a href="https://arxiv.org/abs/1406.1078" target="_blank" rel="noopener">https://arxiv.org/abs/1406.1078</a></p>
+<p>介绍：使用循环神经网络编码器-解码器模型，包含两个循环神经网络，第一个循环神经网络将输入序列编码为一个固定长度的向量表示，另一个循环神经网络将这个向量解码为输出序列。编码器和解码器联合训练，给定源语言句子，最大化目标语言的条件概率。然后将循环神经网络编码器-解码器计算得到的短语对的条件概率作为统计机器翻译系统中对数线性模型的一个特征，提高了翻译性能，说明循环神经网络编码器-解码器很好的学习了语言短语的语法和语义有意义的表示。</p>
+<p>3.2 Attention机制</p>
+<ol>
+<li>Neural machine translation by jointly learning to align and translate</li>
+</ol>
+<p>关键词：Attention机制</p>
+<p>下载链接：<a href="https://arxiv.org/abs/1409.0473" target="_blank" rel="noopener">https://arxiv.org/abs/1409.0473</a></p>
+<p>介绍：针对编码器生成定长向量的问题，2015年，Bengio研究组提出了基于注意力（attention）的End 2 End神经机器翻译。所谓注意力，是指当解码器在生成单个目标语言词时，仅有小部分的源语言词是相关的，绝大多数源语言词都是无关的。因此，Bengio研究组主要为每个目标语言词动态生成源语言端的上下文向量，而不是采用表示整个源语言句子的定长向量，为此，他们提出了一套基于内容（content-based）的注意力方法，实验表明，注意力的引入能够更好地处理长距离依赖，显著提升End 2 End神经机器翻译的性能。可以将注意力视为一种软对齐，将对齐与翻译过程联合训练。</p>
+<ol start="2">
+<li>Effective Approaches to Attention-based Neural Machine Translation</li>
+</ol>
+<p>关键词：Attention机制</p>
+<p>下载链接：<a href="https://arxiv.org/abs/1508.04025" target="_blank" rel="noopener">https://arxiv.org/abs/1508.04025</a></p>
+<p>介绍：针对“Neural machine translation by jointly learning to align and translate”提出的注意力机制进行改进，提出了全局注意力机制和局部注意力机制，以及将状态作为下一时刻的输入等策略。</p>
+<p>3.3 MRT训练</p>
+<ol>
+<li>Minimum Risk Training For Neural Machine Translation</li>
+</ol>
+<p>关键词：MRT训练</p>
+<p>下载链接：<a href="https://arxiv.org/pdf/1512.02433v2" target="_blank" rel="noopener">https://arxiv.org/pdf/1512.02433v2</a></p>
+<p>介绍：这个思路非常类似于och在2003年提出的MERT训练参数的思想。针对神经机器翻译，引入了最少风险训练（MRT），训练目标就是在训练数据上最小化期望损失函数，包括训练时期的模型预测以及直接用于评估的模型参数优化一起训练。1）将评测指标作为损失函数，在训练数据上最小化期望损失函数；2）可以使用任意句子级别的损失函数，不必是可微分的；3）可以应用到任何的end2end的神经机器翻译系统中。由于每个句子的候选翻译的数量是指数级的，也即搜索空间很大，因此算法在实现中对搜索空间进行采样，来近似后验分布，以便提升效率。</p>
+<p>3.4 漏译与过译</p>
+<ol>
+<li>Modeling Coverage for Neural Machine Translation</li>
+</ol>
+<p>关键词：覆盖率；漏译；过译</p>
+<p>下载链接：<a href="http://arxiv.org/abs/1601.04811" target="_blank" rel="noopener">http://arxiv.org/abs/1601.04811</a></p>
+<p>介绍：神经机器翻译存在过译（一些词被翻译多次）和漏译（一些词没有被翻译）问题。为了缓解这个问题，使用一个覆盖率向量来记录注意力历史，覆盖率向量作为注意力模型的输入用于调整后续的注意力，可以让神经机器翻译系统考虑更多的未翻译词。相比基于标准注意力机制的神经机器翻译系统，改进后的模型显著提高了翻译质量和对齐质量。其中的覆盖率向量有两种构造方式，一种是基于语言学意义上的，另一种基于神经网络的。</p>
+<ol start="2">
+<li>Neural Machine Translation with Reconstruction</li>
+</ol>
+<p>关键词：重构器；翻译充分性</p>
+<p>下载链接：<a href="https://www.arxiv.org/abs/1611.01874" target="_blank" rel="noopener">https://www.arxiv.org/abs/1611.01874</a></p>
+<p>介绍：神经机器翻译系统的翻译结果通常缺乏充分性，倾向于重复翻译某些词以及错误的忽略另外一些词。为了缓解这个问题，提出了encoder-decoder-reconstructor框架，reconstructor（重构器）将输出目标句子的隐藏层构造为输入源句子，这样可以保证源句子的信息尽可能的传入到目标句子侧。目标函数包括最大似然概率和重构分数，也即同时考虑了流利度和充分性。</p>
+<p>4 相关工具<br>这部分主要整理相关的开源系统，这些开源系统大多是基于TensorFlow、Theano等框架进行开发的。</p>
+<p>seq2seq</p>
+<p>项目链接：<a href="https://github.com/tensorflow/tensorflow" target="_blank" rel="noopener">https://github.com/tensorflow/tensorflow</a></p>
+<p>介绍：实现了谷歌提出的seq2seq模型，基于TensorFlow框架开发。</p>
+<p>nmt.matlab</p>
+<p>项目链接：<a href="https://github.com/lmthang/nmt.matlab" target="_blank" rel="noopener">https://github.com/lmthang/nmt.matlab</a></p>
+<p>介绍：由Stanford的博士Lmthang开源的，代码由Matlab所写。</p>
+<p>GroundHog</p>
+<p>项目链接：<a href="https://github.com/lisa-groundhog/GroundHog" target="_blank" rel="noopener">https://github.com/lisa-groundhog/GroundHog</a></p>
+<p>介绍：实现了基于注意力机制的神经机器翻译模型，由Bengio研究组，基于Theano框架开发。</p>
+<p>NMT-Coverage</p>
+<p>项目链接：<a href="https://github.com/tuzhaopeng/NMT-Coverage" target="_blank" rel="noopener">https://github.com/tuzhaopeng/NMT-Coverage</a></p>
+<p>介绍：实现了基于覆盖率的神经机器翻译模型，由华为诺亚方舟实验室李航团队，基于Theano框架开发。</p>
+<p>OpenNMT</p>
+<p>项目链接：<a href="http://opennmt.net/" target="_blank" rel="noopener">http://opennmt.net/</a></p>
+<p>介绍：由哈佛大学NLP组开源的神经机器翻译工具包，基于Torch框架开发，达到工业级程度。</p>
+<p>EUREKA-MangoNMT</p>
+<p>项目链接：<a href="https://github.com/jiajunzhangnlp/EUREKA-MangoNMT" target="_blank" rel="noopener">https://github.com/jiajunzhangnlp/EUREKA-MangoNMT</a></p>
+<p>介绍：由中科院自动化所的张家俊老师开发，采用C++。</p>
+<p>dl4mt-tutorial</p>
+<p>项目链接：<a href="https://github.com/nyu-dl/dl4mt-tutorial" target="_blank" rel="noopener">https://github.com/nyu-dl/dl4mt-tutorial</a></p>
+<p>介绍：基于Theano框架开发。</p>
+<p>5 相关公开数据集<br>5.1 LDC<br>LDC（Linguistic Data Consortium，语言数据联盟）提供了大量的平行语料，大多数都是“阿-英”、“汉-英”和“法-英”（加拿大会议记录）的语料资源。右中-英双语平行语料，但是，针对会员是免费的，非会员收费。</p>
+<p>参考链接：<a href="https://www.ldc.upenn.edu/" target="_blank" rel="noopener">https://www.ldc.upenn.edu/</a></p>
+<p>5.2 Europal<br>Europal语料是欧洲议会会议记录文本集，这些会议记录被译成11中语言，这个语料是由每种语言大约4000万的单词组成的。语料库中没有中文语料。</p>
+<p>参考链接：<a href="http://www.statmt.org/europarl/" target="_blank" rel="noopener">http://www.statmt.org/europarl/</a></p>
+<p>5.3 OPUS<br>OPUS收集了各种平行语料，包括公开资源软件本地化的语料和文档。</p>
+<p>包含中文的一些比较大的数据集，主要有MultiUN（<a href="http://opus.lingfil.uu.se/MultiUN.php）" target="_blank" rel="noopener">http://opus.lingfil.uu.se/MultiUN.php）</a> 和 OpenSubtitles2016（<a href="http://opus.lingfil.uu.se/OpenSubtitles2016.php），均有200万左右的句对。" target="_blank" rel="noopener">http://opus.lingfil.uu.se/OpenSubtitles2016.php），均有200万左右的句对。</a></p>
+<p>参考链接：<a href="http://opus.lingfil.uu.se/" target="_blank" rel="noopener">http://opus.lingfil.uu.se/</a></p>
+<p>5.4 Acquis Communautaire<br>Acquis Communautaire语料是由欧盟成员国签订的法律文献的集合，有超过20多种语言。语料库中没有中文语料。</p>
+<p>参考链接：<a href="http://optima.jrc.it/Acquis/JRC-Acquis.2.2/doc/README_Acquis-Communautaire-corpus_JRC.html" target="_blank" rel="noopener">http://optima.jrc.it/Acquis/JRC-Acquis.2.2/doc/README_Acquis-Communautaire-corpus_JRC.html</a></p>
+<p>5.5 UM-Corpus<br>UM-Corpus是由自然语言处理与中葡机器翻译实验室整理的语料，大约200万英中对齐语料，涵盖教育、法律、微博、新闻、科学、演讲、字幕和论文等8个主题。开发者下载语料，需要注册申请。一般申请后数天，就可以收到邮件，邮件中有语料下载链接。</p>
+<p>参考链接：<a href="http://nlp2ct.cis.umac.mo/um-corpus/index.html" target="_blank" rel="noopener">http://nlp2ct.cis.umac.mo/um-corpus/index.html</a></p>
+<p>6 相关大牛<br>这部分主要整理了机器翻译领域学术界及工业界的一些大牛。后续可以多关注这些大牛的成果。</p>
+<p>6.1 国外<br>Université de Montréal： Yoshua Bengio，Dzmitry Bahdanau</p>
+<p>New York University： KyungHyun Cho</p>
+<p>Stanford University： Manning，Lmthang</p>
+<p>Google： IIya Sutskever，Quoc V.Le</p>
+<p>6.2 国内<br>中科院计算所： 刘群</p>
+<p>东北大学： 朱靖波</p>
+<p>清华大学： 刘洋</p>
+<p>中科院自动化所： 宗成庆，张家俊</p>
+<p>苏州大学： 熊德意，张民</p>
+<p>华为-诺亚方舟： 李航，涂兆鹏</p>
+<p>百度： 王海峰，吴华</p>
+<p>7 Reference<br>Rico Sennrich, Neural Machine Translation</p>
+<p>神经机器翻译（NMT）资料</p>
+<p>神经机器翻译（NMT）开源工具</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Machine-Translation/" rel="tag"># Machine Translation</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/27/frontend/codePatch/" rel="next" title="CSS & JavaScript 代码片段">
+                <i class="fa fa-chevron-left"></i> CSS & JavaScript 代码片段
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/12/04/frontend/JavaScript/ECMAScript/" rel="prev" title="ECMAScriptの学习笔记">
+                ECMAScriptの学习笔记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/11.png" alt="ChenQinFei">
+          <p class="site-author-name" itemprop="name">ChenQinFei</p>
+           
+              <p class="site-description motion-element" itemprop="description">An Apple A Day Keeps The Doctor Away</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/">
+                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://codepub.cn" title="IT草根" target="_blank">IT草根</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://linghucong.js.org/" title="令狐葱@前端笔记" target="_blank">令狐葱@前端笔记</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Neural-Machine-Translation-学习笔记"><span class="nav-number">1.</span> <span class="nav-text">Neural Machine Translation 学习笔记</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ChenQinFei</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div>本站总访问量 <span id="busuanzi_value_site_pv"></span> 次, 访客数 <span id="busuanzi_value_site_uv"></span> 人次</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
