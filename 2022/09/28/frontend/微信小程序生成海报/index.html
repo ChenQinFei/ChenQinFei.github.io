@@ -1,0 +1,775 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="微信,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0">
+
+
+
+
+
+
+<meta name="description" content="微信小程序绘制海报一、产品需求🔥 动态生成海报，保存到本地，分享朋友圈。   绘制海报，内容包括： 作品图片（显示圆角） 用户头像（显示圆形头像）、用户姓名、作品名字 固定提示文案 小程序二维码（后端接口请求返回）   海报生成图片； 保存到本地。   二、调研 参考实现文章 小程序如何生成海报分享朋友圈: https://developers.weixin.qq.com/community/d">
+<meta name="keywords" content="微信">
+<meta property="og:type" content="article">
+<meta property="og:title" content="微信小程序生成海报">
+<meta property="og:url" content="http://yoursite.com/2022/09/28/frontend/微信小程序生成海报/index.html">
+<meta property="og:site_name" content="PineApple の 学习笔记">
+<meta property="og:description" content="微信小程序绘制海报一、产品需求🔥 动态生成海报，保存到本地，分享朋友圈。   绘制海报，内容包括： 作品图片（显示圆角） 用户头像（显示圆形头像）、用户姓名、作品名字 固定提示文案 小程序二维码（后端接口请求返回）   海报生成图片； 保存到本地。   二、调研 参考实现文章 小程序如何生成海报分享朋友圈: https://developers.weixin.qq.com/community/d">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/85d2f6b8-643b-4747-b69c-21ae12075102/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220928%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220928T083646Z&X-Amz-Expires=86400&X-Amz-Signature=8ff31c3df0582db277d93b5fe7fed8f8ba2ab1b7ed77d73adcf11c018c929efc&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22&x-id=GetObject">
+<meta property="og:updated_time" content="2022-09-28T08:39:55.931Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="微信小程序生成海报">
+<meta name="twitter:description" content="微信小程序绘制海报一、产品需求🔥 动态生成海报，保存到本地，分享朋友圈。   绘制海报，内容包括： 作品图片（显示圆角） 用户头像（显示圆形头像）、用户姓名、作品名字 固定提示文案 小程序二维码（后端接口请求返回）   海报生成图片； 保存到本地。   二、调研 参考实现文章 小程序如何生成海报分享朋友圈: https://developers.weixin.qq.com/community/d">
+<meta name="twitter:image" content="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/85d2f6b8-643b-4747-b69c-21ae12075102/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220928%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220928T083646Z&X-Amz-Expires=86400&X-Amz-Signature=8ff31c3df0582db277d93b5fe7fed8f8ba2ab1b7ed77d73adcf11c018c929efc&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22&x-id=GetObject">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2022/09/28/frontend/微信小程序生成海报/">
+
+
+
+
+
+  <title> 微信小程序生成海报 | PineApple の 学习笔记 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?0247b1d3b4cebef303651f40cd6eecdb";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">PineApple の 学习笔记</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/09/28/frontend/微信小程序生成海报/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ChenQinFei">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/11.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="PineApple の 学习笔记">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                微信小程序生成海报
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-09-28T15:09:25+08:00">
+                2022-09-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="微信小程序绘制海报"><a href="#微信小程序绘制海报" class="headerlink" title="微信小程序绘制海报"></a>微信小程序绘制海报</h1><h1 id="一、产品需求"><a href="#一、产品需求" class="headerlink" title="一、产品需求"></a>一、产品需求</h1><aside><br>🔥 动态生成海报，保存到本地，分享朋友圈。<br></aside>
+
+<ol>
+<li>绘制海报，内容包括：<ul>
+<li>作品图片（显示圆角）</li>
+<li>用户头像（显示圆形头像）、用户姓名、作品名字</li>
+<li>固定提示文案</li>
+<li>小程序二维码（后端接口请求返回）</li>
+</ul>
+</li>
+<li>海报生成图片；</li>
+<li>保存到本地。</li>
+</ol>
+<p><img src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/85d2f6b8-643b-4747-b69c-21ae12075102/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&amp;X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220928%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Date=20220928T083646Z&amp;X-Amz-Expires=86400&amp;X-Amz-Signature=8ff31c3df0582db277d93b5fe7fed8f8ba2ab1b7ed77d73adcf11c018c929efc&amp;X-Amz-SignedHeaders=host&amp;response-content-disposition=filename%20%3D%22Untitled.png%22&amp;x-id=GetObject" alt="Untitled"></p>
+<h1 id="二、调研"><a href="#二、调研" class="headerlink" title="二、调研"></a>二、调研</h1><ul>
+<li>参考实现文章<ul>
+<li><strong><strong>小程序如何生成海报分享朋友圈:</strong></strong> <a href="https://developers.weixin.qq.com/community/develop/article/doc/000a60125f4cc85356b8bf2bd5bc13" target="_blank" rel="noopener">https://developers.weixin.qq.com/community/develop/article/doc/000a60125f4cc85356b8bf2bd5bc13</a></li>
+<li><strong><strong>全网小程序 分享朋友圈canvas生成海报，保存到相册:</strong></strong> <a href="https://juejin.cn/post/6917423390684872711" target="_blank" rel="noopener">https://juejin.cn/post/6917423390684872711</a></li>
+</ul>
+</li>
+<li>小程序API<ul>
+<li>旧版Canvas：<a href="https://developers.weixin.qq.com/miniprogram/dev/api/canvas/CanvasContext.html" target="_blank" rel="noopener">https://developers.weixin.qq.com/miniprogram/dev/api/canvas/CanvasContext.html</a></li>
+<li>新版Canvas：<a href="https://developers.weixin.qq.com/miniprogram/dev/api/canvas/RenderingContext.html" target="_blank" rel="noopener">https://developers.weixin.qq.com/miniprogram/dev/api/canvas/RenderingContext.html</a></li>
+<li>旧版Canvas迁移： <a href="https://developers.weixin.qq.com/miniprogram/dev/framework/ability/canvas-legacy-migration.html" target="_blank" rel="noopener">https://developers.weixin.qq.com/miniprogram/dev/framework/ability/canvas-legacy-migration.html</a></li>
+<li>RenderingContext API: <a href="https://html.spec.whatwg.org/multipage/" target="_blank" rel="noopener">https://html.spec.whatwg.org/multipage/</a></li>
+</ul>
+</li>
+</ul>
+<h1 id="三、实现"><a href="#三、实现" class="headerlink" title="三、实现"></a>三、实现</h1><h2 id="🌌实现方式一：旧版画布-CanvasContext。。。安卓存在Bug"><a href="#🌌实现方式一：旧版画布-CanvasContext。。。安卓存在Bug" class="headerlink" title="🌌实现方式一：旧版画布-CanvasContext。。。安卓存在Bug"></a>🌌实现方式一：旧版画布-CanvasContext。。。安卓存在Bug</h2><p><strong>碰到问题：</strong></p>
+<p>在IOS上能成功生成海报，并保存。安卓机上能生成海报，但是生成的图片空白。</p>
+<h2 id="🌞实现方式二：新版画布-RenderingContext"><a href="#🌞实现方式二：新版画布-RenderingContext" class="headerlink" title="🌞实现方式二：新版画布-RenderingContext"></a>🌞实现方式二：新版画布-RenderingContext</h2><aside><br>🔥 创建poster组件，部分接口调用与page中存在差异<br></aside>
+
+<h3 id="poster-wxml"><a href="#poster-wxml" class="headerlink" title="poster.wxml"></a><code>poster.wxml</code></h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 二维码大图 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">canvas</span> <span class="attr">class</span>=<span class="string">'qr-canvas'</span> <span class="attr">type</span>=<span class="string">'2d'</span> <span class="attr">id</span>=<span class="string">'qrCanvas'</span>&gt;</span><span class="tag">&lt;/<span class="name">canvas</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">'shade'</span> <span class="attr">wx:if</span>=<span class="string">"&#123;&#123;isShowCanvas&#125;&#125;"</span> <span class="attr">bindtap</span>=<span class="string">"hideCanvas"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">'qr-code'</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">image</span> <span class="attr">class</span>=<span class="string">"qr-img"</span> <span class="attr">src</span>=<span class="string">"&#123;&#123;canvasTempFilePath&#125;&#125;"</span> <span class="attr">mode</span>=<span class="string">"widthFix"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">image</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"qr-tip"</span>&gt;</span>保存图片后，可分享至朋友圈<span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">'qr-btn-save'</span> <span class="attr">catchtap</span>=<span class="string">'saveImageToPhotosAlbumFunc'</span>&gt;</span>保存<span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 二维码大图.end --&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="poster-js关键实现代码"><a href="#poster-js关键实现代码" class="headerlink" title="poster.js关键实现代码"></a><code>poster.js</code>关键实现代码</h3><ul>
+<li>获取<code>canvas对象</code>和<code>绘制上下文</code></li>
+</ul>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 点击显示要生成的canvas</span></span><br><span class="line"><span class="keyword">async</span> getCanvas() &#123;</span><br><span class="line">	<span class="comment">//</span></span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">this</span>.data.canvasTempFilePath) &#123;</span><br><span class="line">    <span class="keyword">this</span>.setData(&#123;</span><br><span class="line">      isShowCanvas: <span class="literal">true</span>,</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (!<span class="keyword">this</span>.data.qrCodeUrl) &#123;</span><br><span class="line">    <span class="keyword">await</span> <span class="keyword">this</span>.getWxQrCode();</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">		wx.showLoading(&#123;</span><br><span class="line">      title: <span class="string">'海报生成中...'</span></span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">const</span> query = <span class="keyword">this</span>.createSelectorQuery(); <span class="comment">// 组件用法，使用wx.createSelectorQuery()获取为空</span></span><br><span class="line">    query.select(<span class="string">'#qrCanvas'</span>)</span><br><span class="line">      .fields(&#123; <span class="attr">node</span>: <span class="literal">true</span>, <span class="attr">size</span>: <span class="literal">true</span> &#125;)</span><br><span class="line">      .exec(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">const</span> canvas = res[<span class="number">0</span>].node;</span><br><span class="line">        <span class="comment">// Canvas 画布的实际绘制宽高</span></span><br><span class="line">        <span class="keyword">const</span> renderWidth = res[<span class="number">0</span>].width</span><br><span class="line">        <span class="keyword">const</span> renderHeight = res[<span class="number">0</span>].height</span><br><span class="line">        <span class="comment">// Canvas 绘制上下文</span></span><br><span class="line">        <span class="keyword">const</span> ctx = canvas.getContext(<span class="string">'2d'</span>);</span><br><span class="line">        <span class="comment">// 初始化画布大小</span></span><br><span class="line">        <span class="keyword">const</span> dpr = wx.getWindowInfo().pixelRatio</span><br><span class="line">        canvas.width = renderWidth * dpr</span><br><span class="line">        canvas.height = renderHeight * dpr</span><br><span class="line">        ctx.scale(dpr, dpr)</span><br><span class="line"></span><br><span class="line">       <span class="keyword">this</span>.createCanvas(canvas, ctx);</span><br><span class="line">      &#125;)</span><br><span class="line">  &#125; <span class="keyword">catch</span>(error) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(error);</span><br><span class="line">    wx.hideLoading();</span><br><span class="line">    wx.showToast(&#123;</span><br><span class="line">      icon: <span class="string">'error'</span>,</span><br><span class="line">      title: <span class="string">'海报生成出错'</span>,</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<ul>
+<li>绘制海报</li>
+</ul>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建canvas</span></span><br><span class="line"><span class="keyword">async</span> createCanvas(canvas, ctx) &#123;</span><br><span class="line">  <span class="keyword">const</span> &#123;</span><br><span class="line">    imgUrl,</span><br><span class="line">    userName,</span><br><span class="line">    userHeaderImage,</span><br><span class="line">    projectThemeName,</span><br><span class="line">  &#125; = <span class="keyword">this</span>.properties.project;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 获取小程序分享二维码</span></span><br><span class="line">  <span class="keyword">const</span> qrImg = <span class="keyword">await</span> getCanvasImage(canvas, <span class="keyword">this</span>.data.qrCodeUrl);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 获取图片信息</span></span><br><span class="line">  <span class="keyword">const</span> projectImg = <span class="keyword">await</span> getCanvasImage(canvas, imgUrl);</span><br><span class="line">  <span class="keyword">const</span> &#123;</span><br><span class="line">    width: pOriginWidth,</span><br><span class="line">    height: pOriginHeight,</span><br><span class="line">  &#125; = projectImg;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> userImg = <span class="keyword">await</span> getCanvasImage(canvas, userHeaderImage);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 作品图片宽高</span></span><br><span class="line">  <span class="keyword">const</span> pRealWidth = <span class="number">330</span>;</span><br><span class="line">  <span class="keyword">const</span> pRealHeight = <span class="number">330</span> / pOriginWidth * pOriginHeight;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// canvas的宽高</span></span><br><span class="line">  <span class="keyword">const</span> margin = <span class="number">15</span>; <span class="comment">// 页边距</span></span><br><span class="line">  <span class="keyword">const</span> cvWidth = pRealWidth + margin * <span class="number">2</span>;</span><br><span class="line">  <span class="keyword">const</span> cvHeight = pRealHeight + margin * <span class="number">2</span> + <span class="number">160</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 头像位置</span></span><br><span class="line">  <span class="keyword">const</span> userImgWidth = <span class="number">40</span>;</span><br><span class="line">  <span class="keyword">const</span> userImgX = margin;</span><br><span class="line">  <span class="keyword">const</span> userImgY = pRealHeight + margin + <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 二维码位置</span></span><br><span class="line">  <span class="keyword">const</span> qrWidth = <span class="number">100</span>;</span><br><span class="line">  <span class="keyword">const</span> qrX = cvWidth - qrWidth - margin;</span><br><span class="line">  <span class="keyword">const</span> qrY = margin + pRealHeight + <span class="number">60</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 作品主题名宽度、位置</span></span><br><span class="line">  <span class="keyword">const</span> themeNamY = margin + pRealHeight + <span class="number">40</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 用户名位置</span></span><br><span class="line">  <span class="keyword">const</span> nameX = margin + userImgWidth + <span class="number">11</span>;</span><br><span class="line">  <span class="keyword">const</span> nameY = themeNamY</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> shareTitleY = nameY + <span class="number">48</span> + <span class="number">19</span>;</span><br><span class="line">  <span class="keyword">const</span> shareTipY = shareTitleY + <span class="number">10</span> + <span class="number">16</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 创建canvas</span></span><br><span class="line">  <span class="keyword">const</span> canvasUtil = <span class="keyword">new</span> CanvasUtil(ctx);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 设置背景</span></span><br><span class="line">  ctx.fillStyle = <span class="string">'#fff'</span>;</span><br><span class="line">  ctx.fillRect(<span class="number">0</span>, <span class="number">0</span>, cvWidth, cvHeight);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 设置作品图片</span></span><br><span class="line">  canvasUtil.drawImage(projectImg, margin, margin, pRealWidth, pRealHeight, <span class="number">8</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 设置头像图片</span></span><br><span class="line">  canvasUtil.drawImage(userImg, userImgX, userImgY, userImgWidth, userImgWidth, userImgWidth / <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 设置二维码图片</span></span><br><span class="line">  canvasUtil.drawImage(qrImg, qrX, qrY, qrWidth, qrWidth);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 设置font style</span></span><br><span class="line">  ctx.fillStyle = <span class="string">'#333'</span>;</span><br><span class="line">  ctx.font = <span class="string">'bold 16px FZLANTY_ZHONGCUJW--GB1-0'</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 设置作品主题名字</span></span><br><span class="line">  ctx.textAlign = <span class="string">'right'</span>;</span><br><span class="line"></span><br><span class="line">  ctx.fillText(projectThemeName, margin + pRealWidth, themeNamY);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 设置用户名称</span></span><br><span class="line">  ctx.textAlign = <span class="string">'left'</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> themeWidth = ctx.measureText(projectThemeName).width;</span><br><span class="line">  <span class="keyword">const</span> nameMaxWidth = pRealWidth - userImgWidth - themeWidth - <span class="number">20</span>;</span><br><span class="line">  canvasUtil.fillText(userName, nameX, nameY, nameMaxWidth);</span><br><span class="line"></span><br><span class="line">  ctx.textAlign = <span class="string">'left'</span>;</span><br><span class="line">  <span class="keyword">const</span> starName = userName.length &gt; <span class="number">5</span></span><br><span class="line">    ? userName.substring(<span class="number">0</span>, <span class="number">4</span>) + <span class="string">'...'</span></span><br><span class="line">    : userName;</span><br><span class="line">  ctx.fillText(<span class="string">`快来为<span class="subst">$&#123;starName&#125;</span>的作品点赞吧！`</span>, margin, shareTitleY);</span><br><span class="line"></span><br><span class="line">  ctx.fillStyle = <span class="string">'#a7a7a7'</span>;</span><br><span class="line">  ctx.font = <span class="string">'13px'</span>;</span><br><span class="line">  ctx.fillText(<span class="string">'长按识别小程序码查看'</span>, margin, shareTipY);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">this</span>.canvasToTempFilePathFunc(cvWidth, cvHeight, canvas).then(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">    wx.hideLoading();</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>canvas生成本地图片路径</li>
+</ul>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 把当前画布指定区域的内容导出生成指定大小的图片</span></span><br><span class="line"><span class="keyword">async</span> canvasToTempFilePathFunc(cvWidth, cvHeight, canvas) &#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> res = <span class="keyword">await</span> canvasToTempFilePath(</span><br><span class="line">      &#123;</span><br><span class="line">        width: cvWidth,</span><br><span class="line">        height: cvHeight,</span><br><span class="line">        canvas,</span><br><span class="line">      &#125;, <span class="keyword">this</span>,</span><br><span class="line">    );</span><br><span class="line">    <span class="keyword">this</span>.setData(&#123;</span><br><span class="line">      canvasTempFilePath: res.tempFilePath,</span><br><span class="line">      isShowCanvas: <span class="literal">true</span>,</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(error);</span><br><span class="line">    wx.showToast(error.errMsg);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<ul>
+<li>保存图片到相册</li>
+</ul>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> saveImageToPhotosAlbumFunc() &#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> res = <span class="keyword">await</span> saveImageToPhotosAlbum(<span class="keyword">this</span>.data.canvasTempFilePath);</span><br><span class="line">    <span class="keyword">this</span>.hideCanvas();</span><br><span class="line">    wx.showToast(&#123;</span><br><span class="line">      icon: <span class="string">'none'</span>,</span><br><span class="line">      title: <span class="string">'已保存至相册，快分享给朋友们吧'</span>,</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">    <span class="keyword">if</span> (err.errMsg.indexOf(<span class="string">'fail auth deny'</span>) &gt; <span class="number">0</span>) &#123;</span><br><span class="line">			<span class="comment">// 获取相册权限</span></span><br><span class="line">      getWritePhoneAlbumAuth();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'保存至相册error'</span>, err);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<h3 id="通用方法封装-common-js"><a href="#通用方法封装-common-js" class="headerlink" title="通用方法封装 common.js"></a>通用方法封装 <code>common.js</code></h3><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// canvas绘制图片，获取图片对象</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> getCanvasImage =<span class="function">(<span class="params">canvas, imgPath</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> image = canvas.createImage();</span><br><span class="line">    image.onload = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      resolve(image);</span><br><span class="line">    &#125;</span><br><span class="line">    image.src = imgPath;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 封装把画布导出生成指定大小的图片。</span></span><br><span class="line"><span class="comment">// 组件中调用需要传入this上下文</span></span><br><span class="line"><span class="comment">// 新版画布调用，需要传入canvas对象。。。注意不是canvasId</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> canvasToTempFilePath = <span class="function">(<span class="params">&#123;width, height, canvas, fileType = <span class="string">'jpg'</span>&#125;, context</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    wx.canvasToTempFilePath(&#123;</span><br><span class="line">      width,</span><br><span class="line">      height,</span><br><span class="line">      canvas,</span><br><span class="line">      fileType,</span><br><span class="line">      success: <span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">        resolve(res)</span><br><span class="line">      &#125;,</span><br><span class="line">      fail: <span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">        reject(res)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;, context);</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 封装保存图片到系统相册</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> saveImageToPhotosAlbum = <span class="function">(<span class="params">filePath</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    wx.saveImageToPhotosAlbum(&#123;</span><br><span class="line">      filePath,</span><br><span class="line">      success: <span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">        resolve(res)</span><br><span class="line">      &#125;,</span><br><span class="line">      fail: <span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">        reject(res);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取保存相册权限</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> getWritePhoneAlbumAuth = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    wx.showModal(&#123;</span><br><span class="line">      title: <span class="string">'是否授权保存到相册'</span>,</span><br><span class="line">      content: <span class="string">'需要获取您的保存图片权限，请确认授权，否则图片将无法保存到相册'</span>,</span><br><span class="line">      success: <span class="function"><span class="keyword">function</span>(<span class="params">tip</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (tip.confirm) &#123;</span><br><span class="line">          wx.openSetting(&#123;</span><br><span class="line">            success(data) &#123;</span><br><span class="line">              <span class="keyword">if</span> (data.authSetting[<span class="string">"scope.writePhotosAlbum"</span>] === <span class="literal">true</span>) &#123;</span><br><span class="line">                wx.showToast(&#123; <span class="attr">icon</span>: <span class="string">'none'</span>, <span class="attr">title</span>: <span class="string">'授权成功'</span> &#125;);</span><br><span class="line">                resolve();</span><br><span class="line">              &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                wx.showToast(&#123; <span class="attr">icon</span>: <span class="string">'none'</span>, <span class="attr">title</span>: <span class="string">'保存失败'</span> &#125;);</span><br><span class="line">                reject();</span><br><span class="line">              &#125;</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="绘制方法封装：canvas-js。"><a href="#绘制方法封装：canvas-js。" class="headerlink" title="绘制方法封装：canvas.js。"></a>绘制方法封装：<code>canvas.js</code>。</h3><p>包括绘制圆角图片、文字超过指定长度…显示。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// https://github.com/Chaunjie/weapp-easy-canvas/blob/9d213d69c4ba1d9e039085bfe540e10184ceecd9/lib/index.js#L207</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CanvasUtil</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(ctx) &#123;</span><br><span class="line">    <span class="keyword">this</span>.ctx = ctx;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  drawImage(path, left, top, width, height, radius) &#123;</span><br><span class="line">    <span class="keyword">var</span> ctx = <span class="keyword">this</span>.ctx;</span><br><span class="line"></span><br><span class="line">    ctx.save();</span><br><span class="line">    <span class="keyword">if</span> (radius) &#123;</span><br><span class="line">      <span class="keyword">this</span>.drawCircle(left, top, width, height, radius);</span><br><span class="line">    &#125;</span><br><span class="line">    ctx.drawImage(path, left, top, width, height);</span><br><span class="line">    ctx.restore();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  getRadius(radius) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> radius === <span class="string">'number'</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">4</span>).fill(radius);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">typeof</span> radius === <span class="string">'string'</span>) &#123;</span><br><span class="line">      <span class="keyword">var</span> arr = radius.split(<span class="string">','</span>);</span><br><span class="line">      <span class="keyword">if</span> (arr.length === <span class="number">2</span>) &#123;</span><br><span class="line">        <span class="keyword">var</span> newArr = [];</span><br><span class="line">        newArr[<span class="number">0</span>] = newArr[<span class="number">2</span>] = +arr[<span class="number">0</span>];</span><br><span class="line">        newArr[<span class="number">1</span>] = newArr[<span class="number">3</span>] = +arr[<span class="number">1</span>];</span><br><span class="line">        <span class="keyword">return</span> newArr;</span><br><span class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span> (arr.length === <span class="number">4</span>) &#123;</span><br><span class="line">        <span class="keyword">var</span> _newArr = arr.map(<span class="function"><span class="keyword">function</span> (<span class="params">r</span>) </span>&#123;</span><br><span class="line">          <span class="keyword">return</span> +r;</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="keyword">return</span> _newArr;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  drawCircle(left, top, width, height, radius) &#123;</span><br><span class="line">    <span class="keyword">const</span> ctx = <span class="keyword">this</span>.ctx;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> radiusArr = <span class="keyword">this</span>.getRadius(radius);</span><br><span class="line">    <span class="comment">// ctx.setFillStyle('transparent');</span></span><br><span class="line">    ctx.beginPath();</span><br><span class="line">    ctx.arc(left + radiusArr[<span class="number">0</span>], top + radiusArr[<span class="number">0</span>], radiusArr[<span class="number">0</span>], <span class="built_in">Math</span>.PI, <span class="built_in">Math</span>.PI * <span class="number">1.5</span>);</span><br><span class="line">    ctx.moveTo(left + radiusArr[<span class="number">0</span>], top);</span><br><span class="line">    ctx.lineTo(left + width - radiusArr[<span class="number">0</span>], top);</span><br><span class="line">    ctx.lineTo(left + width, top + radiusArr[<span class="number">0</span>]);</span><br><span class="line">    ctx.arc(left + width - radiusArr[<span class="number">1</span>], top + radiusArr[<span class="number">1</span>], radiusArr[<span class="number">1</span>], <span class="built_in">Math</span>.PI * <span class="number">1.5</span>, <span class="built_in">Math</span>.PI * <span class="number">2</span>);</span><br><span class="line">    ctx.lineTo(left + width, top + height - radiusArr[<span class="number">1</span>]);</span><br><span class="line">    ctx.lineTo(left + width - radiusArr[<span class="number">1</span>], top + height);</span><br><span class="line">    ctx.arc(left + width - radiusArr[<span class="number">2</span>], top + height - radiusArr[<span class="number">2</span>], radiusArr[<span class="number">2</span>], <span class="number">0</span>, <span class="built_in">Math</span>.PI * <span class="number">0.5</span>);</span><br><span class="line">    ctx.lineTo(left + radiusArr[<span class="number">2</span>], top + height);</span><br><span class="line">    ctx.lineTo(left, top + height - radiusArr[<span class="number">2</span>]);</span><br><span class="line">    ctx.arc(left + radiusArr[<span class="number">3</span>], top + height - radiusArr[<span class="number">3</span>], radiusArr[<span class="number">3</span>], <span class="built_in">Math</span>.PI * <span class="number">0.5</span>, <span class="built_in">Math</span>.PI);</span><br><span class="line">    ctx.lineTo(left, top + radiusArr[<span class="number">3</span>]);</span><br><span class="line">    ctx.lineTo(left + radiusArr[<span class="number">3</span>], top);</span><br><span class="line">    ctx.fill();</span><br><span class="line">    ctx.closePath();</span><br><span class="line">    ctx.clip();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  fillText(text, top, left, maxWidth) &#123;</span><br><span class="line">    <span class="keyword">const</span> ctx = <span class="keyword">this</span>.ctx;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> textWidth = ctx.measureText(text).width;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (textWidth &lt;= maxWidth) &#123;</span><br><span class="line">      ctx.fillText(text, top, left);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">let</span> cutText = text.substring(<span class="number">0</span>, text.length - <span class="number">3</span>);</span><br><span class="line">      <span class="keyword">while</span>(<span class="literal">true</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (ctx.measureText(cutText + <span class="string">'...'</span>).width &lt; maxWidth) &#123;</span><br><span class="line">          <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        cutText = cutText.substring(<span class="number">0</span>, cutText.length - <span class="number">2</span>);</span><br><span class="line">      &#125;</span><br><span class="line">      ctx.fillText(cutText + <span class="string">'...'</span>, top, left)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> CanvasUtil;</span><br></pre></td></tr></table></figure>
+<h3 id="其他问题"><a href="#其他问题" class="headerlink" title="其他问题"></a>其他问题</h3><ul>
+<li>海报字体family指定，没有生效。需要在字体加载处添加scopes相应字段<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">wx.loadFontFace(&#123;</span><br><span class="line">  global: <span class="literal">true</span>,</span><br><span class="line">  family: <span class="string">'my_font_face'</span>,</span><br><span class="line">  source: <span class="string">'url("http://path/to/font.ttf")'</span>,</span><br><span class="line">  scopes: [<span class="string">'webview'</span>, <span class="string">'native'</span>],</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/微信/" rel="tag"># 微信</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2022/02/28/frontend/WeChat/" rel="next" title="那些年踩过的坑 -- 微信H5开发">
+                <i class="fa fa-chevron-left"></i> 那些年踩过的坑 -- 微信H5开发
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/11.png" alt="ChenQinFei">
+          <p class="site-author-name" itemprop="name">ChenQinFei</p>
+           
+              <p class="site-description motion-element" itemprop="description">An Apple A Day Keeps The Doctor Away</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/">
+                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://codepub.cn" title="IT草根" target="_blank">IT草根</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://linghucong.js.org/" title="令狐葱@前端笔记" target="_blank">令狐葱@前端笔记</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#微信小程序绘制海报"><span class="nav-number">1.</span> <span class="nav-text">微信小程序绘制海报</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#一、产品需求"><span class="nav-number">2.</span> <span class="nav-text">一、产品需求</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、调研"><span class="nav-number">3.</span> <span class="nav-text">二、调研</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、实现"><span class="nav-number">4.</span> <span class="nav-text">三、实现</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#🌌实现方式一：旧版画布-CanvasContext。。。安卓存在Bug"><span class="nav-number">4.1.</span> <span class="nav-text">🌌实现方式一：旧版画布-CanvasContext。。。安卓存在Bug</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#🌞实现方式二：新版画布-RenderingContext"><span class="nav-number">4.2.</span> <span class="nav-text">🌞实现方式二：新版画布-RenderingContext</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#poster-wxml"><span class="nav-number">4.2.1.</span> <span class="nav-text">poster.wxml</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#poster-js关键实现代码"><span class="nav-number">4.2.2.</span> <span class="nav-text">poster.js关键实现代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通用方法封装-common-js"><span class="nav-number">4.2.3.</span> <span class="nav-text">通用方法封装 common.js</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#绘制方法封装：canvas-js。"><span class="nav-number">4.2.4.</span> <span class="nav-text">绘制方法封装：canvas.js。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他问题"><span class="nav-number">4.2.5.</span> <span class="nav-text">其他问题</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ChenQinFei</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div>本站总访问量 <span id="busuanzi_value_site_pv"></span> 次, 访客数 <span id="busuanzi_value_site_uv"></span> 人次</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
